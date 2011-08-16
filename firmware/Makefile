@@ -102,7 +102,7 @@ LDFLAGS = -Wl,-Map=$(TARGET).map,--cref
 #AVRDUDE_PROGRAMMER = stk500v2
 AVRDUDE_PROGRAMMER = usbtiny
 
-AVRDUDE_PORT = /dev/ttyACM0
+AVRDUDE_PORT = /dev/ugen2.2
 #AVRDUDE_PORT = com1	   # programmer connected to serial device
 #AVRDUDE_PORT = /dev/cu.KeySerial1	   # programmer connected to serial device
 #AVRDUDE_PORT = /dev/cu.PL2303-0B2

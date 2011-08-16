@@ -1,4 +1,9 @@
 /***************************************************************************
+ Ice Tube Clock firmware August 13, 2009
+ (c) 2009 Limor Fried / Adafruit Industries
+ Modifications by Len Popp
+ Original auto-dimmer mod by Dave Parker
+ Button interrupt fix by caitsith2
  Ice Tube Clock with GPS firmware July 22, 2010
  (c) 2010 Limor Fried / Adafruit Industries
  GPS Capability added by Devlin Thyne
@@ -22,6 +27,11 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 THE SOFTWARE.
 ****************************************************************************/
 
+// Optional Features - #define these or not as desired.
+// Auto-dimmer - requires a photocell hooked up to the hax0r port
+#define FEATURE_AUTODIM
+// Display digit "9" in the usual way (instead of the default with no bottom segment)
+#define FEATURE_9
 
 #define halt(x)  while (1)
 
@@ -46,6 +56,21 @@ THE SOFTWARE.
 #define MAXSNOOZE 600 // 10 minutes
 #define INACTIVITYTIMEOUT 10 // how many seconds we will wait before turning off menus
 
+#define BRIGHTNESS_MAX 90
+#define BRIGHTNESS_MIN 30
+#define BRIGHTNESS_INCREMENT 5
+
+// Between 0 and 1023!
+// >= PHOTOCELL_DARK defaults to BRIGHTNESS_MIN
+// <= PHOTOCELL_LIGHT defaults to BRIGHTNESS_MAX
+// In between does a variable auto-adjust of the brightness
+// My photocell ranges from 225-941+
+// Set DARK > 941 so that it will be bright enough during the day
+// Set Light > 225 so that it will be bright enough during the day
+#define PHOTOCELL_DARK 1023
+#define PHOTOCELL_LIGHT 600
+#define PHOTOCELL_MIN 45
+#define PHOTOCELL_MAX 90
 
 #define BEEP_8KHZ 5
 #define BEEP_4KHZ 10
@@ -75,13 +100,19 @@ void clock_init(void);
 void initbuttons(void);
 void boost_init(uint8_t pwm);
 void vfd_init(void);
+void set_vfd_brightness(uint8_t brightness);
 void speaker_init(void);
+
+#ifdef FEATURE_AUTODIM
+void dimmer_init(void);
+void dimmer_update(void);
+#endif
 
 void display_time(uint8_t h, uint8_t m, uint8_t s);
 void display_date(uint8_t style);
 void display_str(char *s);
 void display_alarm(uint8_t h, uint8_t m);
-void display_timezone(int8_t h, uint8_t m);
+void display_brightness(int brightness);
 
 void set_time(void);
 void set_alarm(void);
@@ -183,6 +214,12 @@ void setgpsdate(char* str);
 #define SPK2 PB2
 #define SPK_PORT PORTB
 #define SPK_DDR DDRB
+
+#define DIMMER_POWER_PORT PORTC
+#define DIMMER_POWER_DDR DDRC
+#define DIMMER_POWER_PIN PC5
+#define DIMMER_SENSE_PIN MUX2
+#define DIMMER_SENSE_PIND ADC4D
 
 #define SEG_A 19
 #define SEG_B 17
