@@ -102,7 +102,7 @@ LDFLAGS = -Wl,-Map=$(TARGET).map,--cref
 #AVRDUDE_PROGRAMMER = stk500v2
 AVRDUDE_PROGRAMMER = usbtiny
 
-AVRDUDE_PORT = /dev/ugen2.2
+#AVRDUDE_PORT = /dev/ugen2.2
 #AVRDUDE_PORT = com1	   # programmer connected to serial device
 #AVRDUDE_PORT = /dev/cu.KeySerial1	   # programmer connected to serial device
 #AVRDUDE_PORT = /dev/cu.PL2303-0B2
@@ -111,7 +111,8 @@ AVRDUDE_PORT = /dev/ugen2.2
 AVRDUDE_WRITE_FLASH = -U flash:w:$(TARGET).hex
 AVRDUDE_WRITE_EEPROM = -U eeprom:w:$(TARGET).eep
 
-AVRDUDE_FLAGS = -p $(MCU) -P $(AVRDUDE_PORT) -c $(AVRDUDE_PROGRAMMER)
+#AVRDUDE_FLAGS = -p $(MCU) -P $(AVRDUDE_PORT) -c $(AVRDUDE_PROGRAMMER)
+AVRDUDE_FLAGS = -p $(MCU) -c $(AVRDUDE_PROGRAMMER)
 
 # Uncomment the following if you want avrdude's erase cycle counter.
 # Note that this counter needs to be initialized first using -Yn,
@@ -120,7 +121,7 @@ AVRDUDE_FLAGS = -p $(MCU) -P $(AVRDUDE_PORT) -c $(AVRDUDE_PROGRAMMER)
 
 # Uncomment the following if you do /not/ wish a verification to be
 # performed after programming the device.
-#AVRDUDE_FLAGS += -V
+AVRDUDE_FLAGS += -V
 
 # Increase verbosity level.  Please use this when submitting bug
 # reports about avrdude. See <http://savannah.nongnu.org/projects/avrdude> 
@@ -151,7 +152,8 @@ SIZE = avr-size
 
 
 # Programming support using avrdude.
-AVRDUDE = avrdude
+#AVRDUDE = avrdude
+AVRDUDE = /Applications/Arduino.app/Contents/Resources/Java/hardware/tools/avr/bin/avrdude
 
 
 REMOVE = rm -f

@@ -1,35 +1,31 @@
 Archive member included because of file (symbol)
 
-/usr/local/lib/gcc/avr/4.3.4/avr5/libgcc.a(_mulsi3.o)
+/Applications/Arduino.app/Contents/Resources/Java/hardware/tools/avr/bin/../lib/gcc/avr/4.3.2/avr5/libgcc.a(_mulsi3.o)
                               iv.o (__mulsi3)
-/usr/local/lib/gcc/avr/4.3.4/avr5/libgcc.a(_udivmodqi4.o)
+/Applications/Arduino.app/Contents/Resources/Java/hardware/tools/avr/bin/../lib/gcc/avr/4.3.2/avr5/libgcc.a(_udivmodqi4.o)
                               iv.o (__udivmodqi4)
-/usr/local/lib/gcc/avr/4.3.4/avr5/libgcc.a(_divmodqi4.o)
+/Applications/Arduino.app/Contents/Resources/Java/hardware/tools/avr/bin/../lib/gcc/avr/4.3.2/avr5/libgcc.a(_divmodqi4.o)
                               iv.o (__divmodqi4)
-/usr/local/lib/gcc/avr/4.3.4/avr5/libgcc.a(_udivmodhi4.o)
+/Applications/Arduino.app/Contents/Resources/Java/hardware/tools/avr/bin/../lib/gcc/avr/4.3.2/avr5/libgcc.a(_udivmodhi4.o)
                               iv.o (__udivmodhi4)
-/usr/local/lib/gcc/avr/4.3.4/avr5/libgcc.a(_divmodhi4.o)
+/Applications/Arduino.app/Contents/Resources/Java/hardware/tools/avr/bin/../lib/gcc/avr/4.3.2/avr5/libgcc.a(_divmodhi4.o)
                               iv.o (__divmodhi4)
-/usr/local/lib/gcc/avr/4.3.4/avr5/libgcc.a(_udivmodsi4.o)
+/Applications/Arduino.app/Contents/Resources/Java/hardware/tools/avr/bin/../lib/gcc/avr/4.3.2/avr5/libgcc.a(_udivmodsi4.o)
                               iv.o (__udivmodsi4)
-/usr/local/lib/gcc/avr/4.3.4/avr5/libgcc.a(_divmodsi4.o)
+/Applications/Arduino.app/Contents/Resources/Java/hardware/tools/avr/bin/../lib/gcc/avr/4.3.2/avr5/libgcc.a(_divmodsi4.o)
                               iv.o (__divmodsi4)
-/usr/local/lib/gcc/avr/4.3.4/avr5/libgcc.a(_exit.o)
-                              /usr/local/lib/gcc/avr/4.3.4/../../../../avr/lib/avr5/crtm168.o (exit)
-/usr/local/lib/gcc/avr/4.3.4/avr5/libgcc.a(_copy_data.o)
+/Applications/Arduino.app/Contents/Resources/Java/hardware/tools/avr/bin/../lib/gcc/avr/4.3.2/avr5/libgcc.a(_exit.o)
+                              /Applications/Arduino.app/Contents/Resources/Java/hardware/tools/avr/bin/../lib/gcc/avr/4.3.2/../../../../avr/lib/avr5/crtm168.o (exit)
+/Applications/Arduino.app/Contents/Resources/Java/hardware/tools/avr/bin/../lib/gcc/avr/4.3.2/avr5/libgcc.a(_copy_data.o)
                               iv.o (__do_copy_data)
-/usr/local/lib/gcc/avr/4.3.4/avr5/libgcc.a(_clear_bss.o)
+/Applications/Arduino.app/Contents/Resources/Java/hardware/tools/avr/bin/../lib/gcc/avr/4.3.2/avr5/libgcc.a(_clear_bss.o)
                               iv.o (__do_clear_bss)
-/usr/local/lib/gcc/avr/4.3.4/../../../../avr/lib/avr5/libc.a(strchr.o)
+/Applications/Arduino.app/Contents/Resources/Java/hardware/tools/avr/bin/../lib/gcc/avr/4.3.2/../../../../avr/lib/avr5/libc.a(strchr.o)
                               iv.o (strchr)
-/usr/local/lib/gcc/avr/4.3.4/../../../../avr/lib/avr5/libc.a(strcmp.o)
+/Applications/Arduino.app/Contents/Resources/Java/hardware/tools/avr/bin/../lib/gcc/avr/4.3.2/../../../../avr/lib/avr5/libc.a(strcmp.o)
                               iv.o (strcmp)
-/usr/local/lib/gcc/avr/4.3.4/../../../../avr/lib/avr5/libc.a(strncat.o)
+/Applications/Arduino.app/Contents/Resources/Java/hardware/tools/avr/bin/../lib/gcc/avr/4.3.2/../../../../avr/lib/avr5/libc.a(strncat.o)
                               iv.o (strncat)
-/usr/local/lib/gcc/avr/4.3.4/../../../../avr/lib/avr5/libc.a(eerd_byte_atmega168.o)
-                              iv.o (__eerd_byte_m168)
-/usr/local/lib/gcc/avr/4.3.4/../../../../avr/lib/avr5/libc.a(eewr_byte_atmega168.o)
-                              iv.o (__eewr_byte_m168)
 
 Allocating common symbols
 Common symbol       size              file
@@ -65,12 +61,12 @@ signature        0x00840000         0x00000400         rw !x
 Linker script and memory map
 
 Address of section .data set to 0x800100
-LOAD /usr/local/lib/gcc/avr/4.3.4/../../../../avr/lib/avr5/crtm168.o
+LOAD /Applications/Arduino.app/Contents/Resources/Java/hardware/tools/avr/bin/../lib/gcc/avr/4.3.2/../../../../avr/lib/avr5/crtm168.o
 LOAD iv.o
 LOAD util.o
-LOAD /usr/local/lib/gcc/avr/4.3.4/avr5/libgcc.a
-LOAD /usr/local/lib/gcc/avr/4.3.4/../../../../avr/lib/avr5/libc.a
-LOAD /usr/local/lib/gcc/avr/4.3.4/avr5/libgcc.a
+LOAD /Applications/Arduino.app/Contents/Resources/Java/hardware/tools/avr/bin/../lib/gcc/avr/4.3.2/avr5/libgcc.a
+LOAD /Applications/Arduino.app/Contents/Resources/Java/hardware/tools/avr/bin/../lib/gcc/avr/4.3.2/../../../../avr/lib/avr5/libc.a
+LOAD /Applications/Arduino.app/Contents/Resources/Java/hardware/tools/avr/bin/../lib/gcc/avr/4.3.2/avr5/libgcc.a
 
 .hash
  *(.hash)
@@ -162,23 +158,23 @@ LOAD /usr/local/lib/gcc/avr/4.3.4/avr5/libgcc.a
 .rela.plt
  *(.rela.plt)
 
-.text           0x00000000     0x2a6e
+.text           0x00000000     0x2e30
  *(.vectors)
- .vectors       0x00000000       0x68 /usr/local/lib/gcc/avr/4.3.4/../../../../avr/lib/avr5/crtm168.o
+ .vectors       0x00000000       0x68 /Applications/Arduino.app/Contents/Resources/Java/hardware/tools/avr/bin/../lib/gcc/avr/4.3.2/../../../../avr/lib/avr5/crtm168.o
                 0x00000000                __vectors
                 0x00000000                __vector_default
  *(.vectors)
  *(.progmem.gcc*)
  *(.progmem*)
  .progmem.data  0x00000068       0xed iv.o
-                0x00000068                alphatable
-                0x00000082                alphatable_p
-                0x00000084                numbertable
-                0x0000008e                numbertable_p
-                0x00000090                digittable
                 0x00000099                digittable_p
+                0x0000008e                numbertable_p
+                0x00000082                alphatable_p
                 0x0000009b                segmenttable
                 0x000000a3                segmenttable_p
+                0x00000068                alphatable
+                0x00000090                digittable
+                0x00000084                numbertable
                 0x00000156                . = ALIGN (0x2)
  *fill*         0x00000155        0x1 00
                 0x00000156                __trampolines_start = .
@@ -199,20 +195,20 @@ LOAD /usr/local/lib/gcc/avr/4.3.4/avr5/libgcc.a
  SORT(*)(.ctors)
  SORT(*)(.dtors)
  *(.init0)
- .init0         0x00000156        0x0 /usr/local/lib/gcc/avr/4.3.4/../../../../avr/lib/avr5/crtm168.o
+ .init0         0x00000156        0x0 /Applications/Arduino.app/Contents/Resources/Java/hardware/tools/avr/bin/../lib/gcc/avr/4.3.2/../../../../avr/lib/avr5/crtm168.o
                 0x00000156                __init
  *(.init0)
  *(.init1)
  *(.init1)
  *(.init2)
- .init2         0x00000156        0xc /usr/local/lib/gcc/avr/4.3.4/../../../../avr/lib/avr5/crtm168.o
+ .init2         0x00000156        0xc /Applications/Arduino.app/Contents/Resources/Java/hardware/tools/avr/bin/../lib/gcc/avr/4.3.2/../../../../avr/lib/avr5/crtm168.o
  *(.init2)
  *(.init3)
  *(.init3)
  *(.init4)
- .init4         0x00000162       0x16 /usr/local/lib/gcc/avr/4.3.4/avr5/libgcc.a(_copy_data.o)
+ .init4         0x00000162       0x16 /Applications/Arduino.app/Contents/Resources/Java/hardware/tools/avr/bin/../lib/gcc/avr/4.3.2/avr5/libgcc.a(_copy_data.o)
                 0x00000162                __do_copy_data
- .init4         0x00000178       0x10 /usr/local/lib/gcc/avr/4.3.4/avr5/libgcc.a(_clear_bss.o)
+ .init4         0x00000178       0x10 /Applications/Arduino.app/Contents/Resources/Java/hardware/tools/avr/bin/../lib/gcc/avr/4.3.2/avr5/libgcc.a(_clear_bss.o)
                 0x00000178                __do_clear_bss
  *(.init4)
  *(.init5)
@@ -224,11 +220,11 @@ LOAD /usr/local/lib/gcc/avr/4.3.4/avr5/libgcc.a
  *(.init8)
  *(.init8)
  *(.init9)
- .init9         0x00000188        0x8 /usr/local/lib/gcc/avr/4.3.4/../../../../avr/lib/avr5/crtm168.o
+ .init9         0x00000188        0x8 /Applications/Arduino.app/Contents/Resources/Java/hardware/tools/avr/bin/../lib/gcc/avr/4.3.2/../../../../avr/lib/avr5/crtm168.o
  *(.init9)
  *(.text)
- .text          0x00000190        0x4 /usr/local/lib/gcc/avr/4.3.4/../../../../avr/lib/avr5/crtm168.o
-                0x00000190                __vector_20
+ .text          0x00000190        0x4 /Applications/Arduino.app/Contents/Resources/Java/hardware/tools/avr/bin/../lib/gcc/avr/4.3.2/../../../../avr/lib/avr5/crtm168.o
+                0x00000190                __vector_22
                 0x00000190                __vector_24
                 0x00000190                __vector_12
                 0x00000190                __bad_interrupt
@@ -246,125 +242,110 @@ LOAD /usr/local/lib/gcc/avr/4.3.4/avr5/libgcc.a
                 0x00000190                __vector_14
                 0x00000190                __vector_10
                 0x00000190                __vector_18
-                0x00000190                __vector_22
- .text          0x00000194     0x2478 iv.o
-                0x00000194                delayms
-                0x000001b0                kickthedog
+                0x00000190                __vector_20
+ .text          0x00000194     0x2866 iv.o
+                0x0000065c                display_time
                 0x000001b4                gotosleep
+                0x000016ce                fix_time
+                0x0000297a                __vector_1
+                0x000015d0                spi_xfer
+                0x000024ca                set_timezone
+                0x000009c6                display_alarm
+                0x000013a6                vfd_init
+                0x00000194                delayms
+                0x00000612                boost_init
+                0x00000394                leapyear
+                0x0000050e                dimmer_init
+                0x00001182                set_volume
+                0x000020b4                __vector_3
+                0x000019fc                check_alarm
+                0x00001c00                set_date
+                0x00001f52                __vector_23
+                0x00001e96                wakeup
+                0x00000ac6                set_alarm
+                0x000002aa                clock_init
+                0x00000d3c                display_str
+                0x000013ac                vfd_send
+                0x000001b0                kickthedog
+                0x00000d8a                display_date
+                0x000007ac                set_time
+                0x00002166                __vector_5
+                0x000022a4                getgpstime
+                0x00000430                tick
+                0x0000269a                main
+                0x000003c6                speaker_init
+                0x000015e2                setgpstime
+                0x00002072                setsnooze
+                0x00001a34                __vector_9
+                0x000015da                gpsdataready
+                0x00000544                dimmer_update
+                0x00000558                __vector_21
+                0x000012be                set_brightness
+                0x000013e0                setdisplay
+                0x00000480                beep
                 0x0000020e                initbuttons
-                0x00000234                leapyear
-                0x00000266                tick
-                0x000002b6                beep
-                0x00000344                dimmer_init
-                0x0000037a                dimmer_update
-                0x0000038e                set_vfd_brightness
-                0x000003a6                boost_init
-                0x000003c6                __vector_21
-                0x0000046e                display_brightness
-                0x000004d4                display_time
-                0x000005cc                display_alarm
-                0x000006cc                display_timezone
-                0x0000076e                display_str
-                0x000007bc                display_date
-                0x00000ad8                vfd_init
-                0x00000ade                vfd_send
-                0x00000b12                setdisplay
-                0x00000bca                __vector_16
-                0x00000d02                spi_xfer
-                0x00000d0c                gpsdataready
-                0x00000d14                setgpstime
-                0x00000d68                setgpsdate
-                0x00000dac                fix_time
-                0x00001014                set_brightness
-                0x000010da                set_time
-                0x000012be                set_alarm
-                0x0000144a                check_alarm
-                0x00001482                __vector_9
-                0x000015a6                setalarmstate
-                0x0000164e                set_date
-                0x000018a2                __vector_23
-                0x0000197a                setsnooze
-                0x000019bc                __vector_3
-                0x00001a6e                __vector_5
-                0x00001bac                getgpstime
-                0x00001dd2                speaker_init
-                0x00001e34                clock_init
-                0x00001ede                set_region
-                0x00001f98                set_volume
-                0x000020b6                wakeup
-                0x00002142                set_timezone
-                0x000022e8                main
-                0x0000258c                __vector_1
- .text          0x0000260c      0x2b2 util.o
-                0x0000260c                delay_10us
-                0x00002620                delay_s
-                0x0000263e                uart_init
-                0x00002658                uart_putchar
-                0x0000266c                uart_getchar
-                0x0000267a                uart_getch
-                0x00002682                ROM_putstring
-                0x000026c4                uart_puts
-                0x000026de                uart_putc_hex
-                0x00002730                uart_putw_hex
-                0x00002744                uart_putdw_hex
-                0x0000276a                uart_putw_dec
-                0x000027e0                uart_putdw_dec
- .text          0x000028be        0x0 /usr/local/lib/gcc/avr/4.3.4/avr5/libgcc.a(_mulsi3.o)
- .text          0x000028be        0x0 /usr/local/lib/gcc/avr/4.3.4/avr5/libgcc.a(_udivmodqi4.o)
- .text          0x000028be        0x0 /usr/local/lib/gcc/avr/4.3.4/avr5/libgcc.a(_divmodqi4.o)
- .text          0x000028be        0x0 /usr/local/lib/gcc/avr/4.3.4/avr5/libgcc.a(_udivmodhi4.o)
- .text          0x000028be        0x0 /usr/local/lib/gcc/avr/4.3.4/avr5/libgcc.a(_divmodhi4.o)
- .text          0x000028be        0x0 /usr/local/lib/gcc/avr/4.3.4/avr5/libgcc.a(_udivmodsi4.o)
- .text          0x000028be        0x0 /usr/local/lib/gcc/avr/4.3.4/avr5/libgcc.a(_divmodsi4.o)
- .text          0x000028be        0x0 /usr/local/lib/gcc/avr/4.3.4/avr5/libgcc.a(_exit.o)
- .text          0x000028be        0x0 /usr/local/lib/gcc/avr/4.3.4/avr5/libgcc.a(_copy_data.o)
- .text          0x000028be        0x0 /usr/local/lib/gcc/avr/4.3.4/avr5/libgcc.a(_clear_bss.o)
- .text          0x000028be        0x0 /usr/local/lib/gcc/avr/4.3.4/../../../../avr/lib/avr5/libc.a(strchr.o)
- .text          0x000028be        0x0 /usr/local/lib/gcc/avr/4.3.4/../../../../avr/lib/avr5/libc.a(strcmp.o)
- .text          0x000028be        0x0 /usr/local/lib/gcc/avr/4.3.4/../../../../avr/lib/avr5/libc.a(strncat.o)
- .text          0x000028be        0x0 /usr/local/lib/gcc/avr/4.3.4/../../../../avr/lib/avr5/libc.a(eerd_byte_atmega168.o)
- .text          0x000028be        0x0 /usr/local/lib/gcc/avr/4.3.4/../../../../avr/lib/avr5/libc.a(eewr_byte_atmega168.o)
-                0x000028be                . = ALIGN (0x2)
+                0x0000168a                setgpsdate
+                0x000010a6                set_region
+                0x00000644                set_vfd_brightness
+                0x00001b58                setalarmstate
+                0x00001498                __vector_16
+                0x00000c9a                display_timezone
+                0x00000234                display_brightness
+ .text          0x000029fa      0x2b2 util.o
+                0x00002bce                uart_putdw_dec
+                0x00002acc                uart_putc_hex
+                0x000029fa                delay_10us
+                0x00002ab2                uart_puts
+                0x00002a5a                uart_getchar
+                0x00002a2c                uart_init
+                0x00002b58                uart_putw_dec
+                0x00002b32                uart_putdw_hex
+                0x00002a68                uart_getch
+                0x00002a70                ROM_putstring
+                0x00002a0e                delay_s
+                0x00002b1e                uart_putw_hex
+                0x00002a46                uart_putchar
+ .text          0x00002cac        0x0 /Applications/Arduino.app/Contents/Resources/Java/hardware/tools/avr/bin/../lib/gcc/avr/4.3.2/avr5/libgcc.a(_mulsi3.o)
+ .text          0x00002cac        0x0 /Applications/Arduino.app/Contents/Resources/Java/hardware/tools/avr/bin/../lib/gcc/avr/4.3.2/avr5/libgcc.a(_udivmodqi4.o)
+ .text          0x00002cac        0x0 /Applications/Arduino.app/Contents/Resources/Java/hardware/tools/avr/bin/../lib/gcc/avr/4.3.2/avr5/libgcc.a(_divmodqi4.o)
+ .text          0x00002cac        0x0 /Applications/Arduino.app/Contents/Resources/Java/hardware/tools/avr/bin/../lib/gcc/avr/4.3.2/avr5/libgcc.a(_udivmodhi4.o)
+ .text          0x00002cac        0x0 /Applications/Arduino.app/Contents/Resources/Java/hardware/tools/avr/bin/../lib/gcc/avr/4.3.2/avr5/libgcc.a(_divmodhi4.o)
+ .text          0x00002cac        0x0 /Applications/Arduino.app/Contents/Resources/Java/hardware/tools/avr/bin/../lib/gcc/avr/4.3.2/avr5/libgcc.a(_udivmodsi4.o)
+ .text          0x00002cac        0x0 /Applications/Arduino.app/Contents/Resources/Java/hardware/tools/avr/bin/../lib/gcc/avr/4.3.2/avr5/libgcc.a(_divmodsi4.o)
+ .text          0x00002cac        0x0 /Applications/Arduino.app/Contents/Resources/Java/hardware/tools/avr/bin/../lib/gcc/avr/4.3.2/avr5/libgcc.a(_exit.o)
+ .text          0x00002cac        0x0 /Applications/Arduino.app/Contents/Resources/Java/hardware/tools/avr/bin/../lib/gcc/avr/4.3.2/avr5/libgcc.a(_copy_data.o)
+ .text          0x00002cac        0x0 /Applications/Arduino.app/Contents/Resources/Java/hardware/tools/avr/bin/../lib/gcc/avr/4.3.2/avr5/libgcc.a(_clear_bss.o)
+ .text          0x00002cac       0x16 /Applications/Arduino.app/Contents/Resources/Java/hardware/tools/avr/bin/../lib/gcc/avr/4.3.2/../../../../avr/lib/avr5/libc.a(strchr.o)
+                0x00002cac                strchr
+ .text          0x00002cc2       0x12 /Applications/Arduino.app/Contents/Resources/Java/hardware/tools/avr/bin/../lib/gcc/avr/4.3.2/../../../../avr/lib/avr5/libc.a(strcmp.o)
+                0x00002cc2                strcmp
+ .text          0x00002cd4       0x20 /Applications/Arduino.app/Contents/Resources/Java/hardware/tools/avr/bin/../lib/gcc/avr/4.3.2/../../../../avr/lib/avr5/libc.a(strncat.o)
+                0x00002cd4                strncat
+                0x00002cf4                . = ALIGN (0x2)
  *(.text.*)
- .text.libgcc   0x000028be       0x3e /usr/local/lib/gcc/avr/4.3.4/avr5/libgcc.a(_mulsi3.o)
-                0x000028be                __mulsi3
- .text.libgcc   0x000028fc       0x18 /usr/local/lib/gcc/avr/4.3.4/avr5/libgcc.a(_udivmodqi4.o)
-                0x000028fc                __udivmodqi4
- .text.libgcc   0x00002914       0x1a /usr/local/lib/gcc/avr/4.3.4/avr5/libgcc.a(_divmodqi4.o)
-                0x00002914                __divmodqi4
- .text.libgcc   0x0000292e       0x28 /usr/local/lib/gcc/avr/4.3.4/avr5/libgcc.a(_udivmodhi4.o)
-                0x0000292e                __udivmodhi4
- .text.libgcc   0x00002956       0x26 /usr/local/lib/gcc/avr/4.3.4/avr5/libgcc.a(_divmodhi4.o)
-                0x00002956                __divmodhi4
-                0x00002956                _div
- .text.libgcc   0x0000297c       0x44 /usr/local/lib/gcc/avr/4.3.4/avr5/libgcc.a(_udivmodsi4.o)
-                0x0000297c                __udivmodsi4
- .text.libgcc   0x000029c0       0x36 /usr/local/lib/gcc/avr/4.3.4/avr5/libgcc.a(_divmodsi4.o)
-                0x000029c0                __divmodsi4
- .text.libgcc   0x000029f6        0x0 /usr/local/lib/gcc/avr/4.3.4/avr5/libgcc.a(_exit.o)
- .text.libgcc   0x000029f6        0x0 /usr/local/lib/gcc/avr/4.3.4/avr5/libgcc.a(_copy_data.o)
- .text.libgcc   0x000029f6        0x0 /usr/local/lib/gcc/avr/4.3.4/avr5/libgcc.a(_clear_bss.o)
- .text.avr-libc
-                0x000029f6       0x16 /usr/local/lib/gcc/avr/4.3.4/../../../../avr/lib/avr5/libc.a(strchr.o)
-                0x000029f6                strchr
- .text.avr-libc
-                0x00002a0c       0x12 /usr/local/lib/gcc/avr/4.3.4/../../../../avr/lib/avr5/libc.a(strcmp.o)
-                0x00002a0c                strcmp
- .text.avr-libc
-                0x00002a1e       0x20 /usr/local/lib/gcc/avr/4.3.4/../../../../avr/lib/avr5/libc.a(strncat.o)
-                0x00002a1e                strncat
- .text.avr-libc
-                0x00002a3e       0x10 /usr/local/lib/gcc/avr/4.3.4/../../../../avr/lib/avr5/libc.a(eerd_byte_atmega168.o)
-                0x00002a3e                __eerd_byte_m168
- .text.avr-libc
-                0x00002a4e       0x1c /usr/local/lib/gcc/avr/4.3.4/../../../../avr/lib/avr5/libc.a(eewr_byte_atmega168.o)
-                0x00002a4e                __eewr_byte_m168
-                0x00002a50                __eewr_r18_m168
-                0x00002a6a                . = ALIGN (0x2)
+ .text.libgcc   0x00002cf4       0x3e /Applications/Arduino.app/Contents/Resources/Java/hardware/tools/avr/bin/../lib/gcc/avr/4.3.2/avr5/libgcc.a(_mulsi3.o)
+                0x00002cf4                __mulsi3
+ .text.libgcc   0x00002d32       0x18 /Applications/Arduino.app/Contents/Resources/Java/hardware/tools/avr/bin/../lib/gcc/avr/4.3.2/avr5/libgcc.a(_udivmodqi4.o)
+                0x00002d32                __udivmodqi4
+ .text.libgcc   0x00002d4a       0x1a /Applications/Arduino.app/Contents/Resources/Java/hardware/tools/avr/bin/../lib/gcc/avr/4.3.2/avr5/libgcc.a(_divmodqi4.o)
+                0x00002d4a                __divmodqi4
+ .text.libgcc   0x00002d64       0x28 /Applications/Arduino.app/Contents/Resources/Java/hardware/tools/avr/bin/../lib/gcc/avr/4.3.2/avr5/libgcc.a(_udivmodhi4.o)
+                0x00002d64                __udivmodhi4
+ .text.libgcc   0x00002d8c       0x26 /Applications/Arduino.app/Contents/Resources/Java/hardware/tools/avr/bin/../lib/gcc/avr/4.3.2/avr5/libgcc.a(_divmodhi4.o)
+                0x00002d8c                __divmodhi4
+                0x00002d8c                _div
+ .text.libgcc   0x00002db2       0x44 /Applications/Arduino.app/Contents/Resources/Java/hardware/tools/avr/bin/../lib/gcc/avr/4.3.2/avr5/libgcc.a(_udivmodsi4.o)
+                0x00002db2                __udivmodsi4
+ .text.libgcc   0x00002df6       0x36 /Applications/Arduino.app/Contents/Resources/Java/hardware/tools/avr/bin/../lib/gcc/avr/4.3.2/avr5/libgcc.a(_divmodsi4.o)
+                0x00002df6                __divmodsi4
+ .text.libgcc   0x00002e2c        0x0 /Applications/Arduino.app/Contents/Resources/Java/hardware/tools/avr/bin/../lib/gcc/avr/4.3.2/avr5/libgcc.a(_exit.o)
+ .text.libgcc   0x00002e2c        0x0 /Applications/Arduino.app/Contents/Resources/Java/hardware/tools/avr/bin/../lib/gcc/avr/4.3.2/avr5/libgcc.a(_copy_data.o)
+ .text.libgcc   0x00002e2c        0x0 /Applications/Arduino.app/Contents/Resources/Java/hardware/tools/avr/bin/../lib/gcc/avr/4.3.2/avr5/libgcc.a(_clear_bss.o)
+                0x00002e2c                . = ALIGN (0x2)
  *(.fini9)
- .fini9         0x00002a6a        0x0 /usr/local/lib/gcc/avr/4.3.4/avr5/libgcc.a(_exit.o)
-                0x00002a6a                exit
-                0x00002a6a                _exit
+ .fini9         0x00002e2c        0x0 /Applications/Arduino.app/Contents/Resources/Java/hardware/tools/avr/bin/../lib/gcc/avr/4.3.2/avr5/libgcc.a(_exit.o)
+                0x00002e2c                exit
+                0x00002e2c                _exit
  *(.fini9)
  *(.fini8)
  *(.fini8)
@@ -383,32 +364,30 @@ LOAD /usr/local/lib/gcc/avr/4.3.4/avr5/libgcc.a
  *(.fini1)
  *(.fini1)
  *(.fini0)
- .fini0         0x00002a6a        0x4 /usr/local/lib/gcc/avr/4.3.4/avr5/libgcc.a(_exit.o)
+ .fini0         0x00002e2c        0x4 /Applications/Arduino.app/Contents/Resources/Java/hardware/tools/avr/bin/../lib/gcc/avr/4.3.2/avr5/libgcc.a(_exit.o)
  *(.fini0)
-                0x00002a6e                _etext = .
+                0x00002e30                _etext = .
 
-.data           0x00800100      0x146 load address 0x00002a6e
+.data           0x00800100      0x146 load address 0x00002e30
                 0x00800100                PROVIDE (__data_start, .)
  *(.data)
- .data          0x00800100        0x0 /usr/local/lib/gcc/avr/4.3.4/../../../../avr/lib/avr5/crtm168.o
+ .data          0x00800100        0x0 /Applications/Arduino.app/Contents/Resources/Java/hardware/tools/avr/bin/../lib/gcc/avr/4.3.2/../../../../avr/lib/avr5/crtm168.o
  .data          0x00800100      0x145 iv.o
                 0x00800244                intTimeZoneHour
  .data          0x00800245        0x0 util.o
- .data          0x00800245        0x0 /usr/local/lib/gcc/avr/4.3.4/avr5/libgcc.a(_mulsi3.o)
- .data          0x00800245        0x0 /usr/local/lib/gcc/avr/4.3.4/avr5/libgcc.a(_udivmodqi4.o)
- .data          0x00800245        0x0 /usr/local/lib/gcc/avr/4.3.4/avr5/libgcc.a(_divmodqi4.o)
- .data          0x00800245        0x0 /usr/local/lib/gcc/avr/4.3.4/avr5/libgcc.a(_udivmodhi4.o)
- .data          0x00800245        0x0 /usr/local/lib/gcc/avr/4.3.4/avr5/libgcc.a(_divmodhi4.o)
- .data          0x00800245        0x0 /usr/local/lib/gcc/avr/4.3.4/avr5/libgcc.a(_udivmodsi4.o)
- .data          0x00800245        0x0 /usr/local/lib/gcc/avr/4.3.4/avr5/libgcc.a(_divmodsi4.o)
- .data          0x00800245        0x0 /usr/local/lib/gcc/avr/4.3.4/avr5/libgcc.a(_exit.o)
- .data          0x00800245        0x0 /usr/local/lib/gcc/avr/4.3.4/avr5/libgcc.a(_copy_data.o)
- .data          0x00800245        0x0 /usr/local/lib/gcc/avr/4.3.4/avr5/libgcc.a(_clear_bss.o)
- .data          0x00800245        0x0 /usr/local/lib/gcc/avr/4.3.4/../../../../avr/lib/avr5/libc.a(strchr.o)
- .data          0x00800245        0x0 /usr/local/lib/gcc/avr/4.3.4/../../../../avr/lib/avr5/libc.a(strcmp.o)
- .data          0x00800245        0x0 /usr/local/lib/gcc/avr/4.3.4/../../../../avr/lib/avr5/libc.a(strncat.o)
- .data          0x00800245        0x0 /usr/local/lib/gcc/avr/4.3.4/../../../../avr/lib/avr5/libc.a(eerd_byte_atmega168.o)
- .data          0x00800245        0x0 /usr/local/lib/gcc/avr/4.3.4/../../../../avr/lib/avr5/libc.a(eewr_byte_atmega168.o)
+ .data          0x00800245        0x0 /Applications/Arduino.app/Contents/Resources/Java/hardware/tools/avr/bin/../lib/gcc/avr/4.3.2/avr5/libgcc.a(_mulsi3.o)
+ .data          0x00800245        0x0 /Applications/Arduino.app/Contents/Resources/Java/hardware/tools/avr/bin/../lib/gcc/avr/4.3.2/avr5/libgcc.a(_udivmodqi4.o)
+ .data          0x00800245        0x0 /Applications/Arduino.app/Contents/Resources/Java/hardware/tools/avr/bin/../lib/gcc/avr/4.3.2/avr5/libgcc.a(_divmodqi4.o)
+ .data          0x00800245        0x0 /Applications/Arduino.app/Contents/Resources/Java/hardware/tools/avr/bin/../lib/gcc/avr/4.3.2/avr5/libgcc.a(_udivmodhi4.o)
+ .data          0x00800245        0x0 /Applications/Arduino.app/Contents/Resources/Java/hardware/tools/avr/bin/../lib/gcc/avr/4.3.2/avr5/libgcc.a(_divmodhi4.o)
+ .data          0x00800245        0x0 /Applications/Arduino.app/Contents/Resources/Java/hardware/tools/avr/bin/../lib/gcc/avr/4.3.2/avr5/libgcc.a(_udivmodsi4.o)
+ .data          0x00800245        0x0 /Applications/Arduino.app/Contents/Resources/Java/hardware/tools/avr/bin/../lib/gcc/avr/4.3.2/avr5/libgcc.a(_divmodsi4.o)
+ .data          0x00800245        0x0 /Applications/Arduino.app/Contents/Resources/Java/hardware/tools/avr/bin/../lib/gcc/avr/4.3.2/avr5/libgcc.a(_exit.o)
+ .data          0x00800245        0x0 /Applications/Arduino.app/Contents/Resources/Java/hardware/tools/avr/bin/../lib/gcc/avr/4.3.2/avr5/libgcc.a(_copy_data.o)
+ .data          0x00800245        0x0 /Applications/Arduino.app/Contents/Resources/Java/hardware/tools/avr/bin/../lib/gcc/avr/4.3.2/avr5/libgcc.a(_clear_bss.o)
+ .data          0x00800245        0x0 /Applications/Arduino.app/Contents/Resources/Java/hardware/tools/avr/bin/../lib/gcc/avr/4.3.2/../../../../avr/lib/avr5/libc.a(strchr.o)
+ .data          0x00800245        0x0 /Applications/Arduino.app/Contents/Resources/Java/hardware/tools/avr/bin/../lib/gcc/avr/4.3.2/../../../../avr/lib/avr5/libc.a(strcmp.o)
+ .data          0x00800245        0x0 /Applications/Arduino.app/Contents/Resources/Java/hardware/tools/avr/bin/../lib/gcc/avr/4.3.2/../../../../avr/lib/avr5/libc.a(strncat.o)
  *(.data*)
  *(.rodata)
  *(.rodata*)
@@ -418,73 +397,72 @@ LOAD /usr/local/lib/gcc/avr/4.3.4/avr5/libgcc.a
                 0x00800246                _edata = .
                 0x00800246                PROVIDE (__data_end, .)
 
-.bss            0x00800246       0xb0
+.bss            0x00800246       0xb1
                 0x00800246                PROVIDE (__bss_start, .)
  *(.bss)
- .bss           0x00800246        0x0 /usr/local/lib/gcc/avr/4.3.4/../../../../avr/lib/avr5/crtm168.o
- .bss           0x00800246       0x16 iv.o
-                0x00800246                app_start
-                0x00800248                region
+ .bss           0x00800246        0x0 /Applications/Arduino.app/Contents/Resources/Java/hardware/tools/avr/bin/../lib/gcc/avr/4.3.2/../../../../avr/lib/avr5/crtm168.o
+ .bss           0x00800246       0x17 iv.o
                 0x00800249                sleepmode
-                0x0080024a                timeunknown
-                0x0080024b                restored
+                0x0080024e                secondDisp
+                0x0080024f                currdigit
+                0x0080025b                buttonholdcounter
+                0x00800248                region
+                0x00800256                milliseconds
+                0x00800246                app_start
                 0x0080024c                intBufferStatus
+                0x0080025a                pressed
+                0x0080024b                restored
                 0x0080024d                intTimeZoneMin
-                0x0080024e                currdigit
-                0x0080024f                muxdiv
-                0x00800251                alarmdiv
-                0x00800253                snoozetimer
-                0x00800255                milliseconds
-                0x00800257                last_buttonstate
-                0x00800258                just_pressed
-                0x00800259                pressed
-                0x0080025a                buttonholdcounter
-                0x0080025b                timeoutcounter
- .bss           0x0080025c        0x0 util.o
- .bss           0x0080025c        0x0 /usr/local/lib/gcc/avr/4.3.4/avr5/libgcc.a(_mulsi3.o)
- .bss           0x0080025c        0x0 /usr/local/lib/gcc/avr/4.3.4/avr5/libgcc.a(_udivmodqi4.o)
- .bss           0x0080025c        0x0 /usr/local/lib/gcc/avr/4.3.4/avr5/libgcc.a(_divmodqi4.o)
- .bss           0x0080025c        0x0 /usr/local/lib/gcc/avr/4.3.4/avr5/libgcc.a(_udivmodhi4.o)
- .bss           0x0080025c        0x0 /usr/local/lib/gcc/avr/4.3.4/avr5/libgcc.a(_divmodhi4.o)
- .bss           0x0080025c        0x0 /usr/local/lib/gcc/avr/4.3.4/avr5/libgcc.a(_udivmodsi4.o)
- .bss           0x0080025c        0x0 /usr/local/lib/gcc/avr/4.3.4/avr5/libgcc.a(_divmodsi4.o)
- .bss           0x0080025c        0x0 /usr/local/lib/gcc/avr/4.3.4/avr5/libgcc.a(_exit.o)
- .bss           0x0080025c        0x0 /usr/local/lib/gcc/avr/4.3.4/avr5/libgcc.a(_copy_data.o)
- .bss           0x0080025c        0x0 /usr/local/lib/gcc/avr/4.3.4/avr5/libgcc.a(_clear_bss.o)
- .bss           0x0080025c        0x0 /usr/local/lib/gcc/avr/4.3.4/../../../../avr/lib/avr5/libc.a(strchr.o)
- .bss           0x0080025c        0x0 /usr/local/lib/gcc/avr/4.3.4/../../../../avr/lib/avr5/libc.a(strcmp.o)
- .bss           0x0080025c        0x0 /usr/local/lib/gcc/avr/4.3.4/../../../../avr/lib/avr5/libc.a(strncat.o)
- .bss           0x0080025c        0x0 /usr/local/lib/gcc/avr/4.3.4/../../../../avr/lib/avr5/libc.a(eerd_byte_atmega168.o)
- .bss           0x0080025c        0x0 /usr/local/lib/gcc/avr/4.3.4/../../../../avr/lib/avr5/libc.a(eewr_byte_atmega168.o)
+                0x0080025c                timeoutcounter
+                0x00800252                alarmdiv
+                0x00800258                last_buttonstate
+                0x00800254                snoozetimer
+                0x00800259                just_pressed
+                0x0080024a                timeunknown
+                0x00800250                muxdiv
+ .bss           0x0080025d        0x0 util.o
+ .bss           0x0080025d        0x0 /Applications/Arduino.app/Contents/Resources/Java/hardware/tools/avr/bin/../lib/gcc/avr/4.3.2/avr5/libgcc.a(_mulsi3.o)
+ .bss           0x0080025d        0x0 /Applications/Arduino.app/Contents/Resources/Java/hardware/tools/avr/bin/../lib/gcc/avr/4.3.2/avr5/libgcc.a(_udivmodqi4.o)
+ .bss           0x0080025d        0x0 /Applications/Arduino.app/Contents/Resources/Java/hardware/tools/avr/bin/../lib/gcc/avr/4.3.2/avr5/libgcc.a(_divmodqi4.o)
+ .bss           0x0080025d        0x0 /Applications/Arduino.app/Contents/Resources/Java/hardware/tools/avr/bin/../lib/gcc/avr/4.3.2/avr5/libgcc.a(_udivmodhi4.o)
+ .bss           0x0080025d        0x0 /Applications/Arduino.app/Contents/Resources/Java/hardware/tools/avr/bin/../lib/gcc/avr/4.3.2/avr5/libgcc.a(_divmodhi4.o)
+ .bss           0x0080025d        0x0 /Applications/Arduino.app/Contents/Resources/Java/hardware/tools/avr/bin/../lib/gcc/avr/4.3.2/avr5/libgcc.a(_udivmodsi4.o)
+ .bss           0x0080025d        0x0 /Applications/Arduino.app/Contents/Resources/Java/hardware/tools/avr/bin/../lib/gcc/avr/4.3.2/avr5/libgcc.a(_divmodsi4.o)
+ .bss           0x0080025d        0x0 /Applications/Arduino.app/Contents/Resources/Java/hardware/tools/avr/bin/../lib/gcc/avr/4.3.2/avr5/libgcc.a(_exit.o)
+ .bss           0x0080025d        0x0 /Applications/Arduino.app/Contents/Resources/Java/hardware/tools/avr/bin/../lib/gcc/avr/4.3.2/avr5/libgcc.a(_copy_data.o)
+ .bss           0x0080025d        0x0 /Applications/Arduino.app/Contents/Resources/Java/hardware/tools/avr/bin/../lib/gcc/avr/4.3.2/avr5/libgcc.a(_clear_bss.o)
+ .bss           0x0080025d        0x0 /Applications/Arduino.app/Contents/Resources/Java/hardware/tools/avr/bin/../lib/gcc/avr/4.3.2/../../../../avr/lib/avr5/libc.a(strchr.o)
+ .bss           0x0080025d        0x0 /Applications/Arduino.app/Contents/Resources/Java/hardware/tools/avr/bin/../lib/gcc/avr/4.3.2/../../../../avr/lib/avr5/libc.a(strcmp.o)
+ .bss           0x0080025d        0x0 /Applications/Arduino.app/Contents/Resources/Java/hardware/tools/avr/bin/../lib/gcc/avr/4.3.2/../../../../avr/lib/avr5/libc.a(strncat.o)
  *(.bss*)
  *(COMMON)
- COMMON         0x0080025c       0x9a iv.o
-                0x0080025c                t
-                0x00800260                time_h
-                0x00800261                strBuffer
-                0x008002e1                date_y
-                0x008002e2                alarm_m
-                0x008002e3                volume
-                0x008002e4                date_d
-                0x008002e5                display
-                0x008002ee                time_m
-                0x008002ef                alarm_on
-                0x008002f0                alarm_h
-                0x008002f1                brightness_level
-                0x008002f2                alarming
-                0x008002f3                displaymode
-                0x008002f4                date_m
-                0x008002f5                time_s
-                0x008002f6                PROVIDE (__bss_end, .)
-                0x00002a6e                __data_load_start = LOADADDR (.data)
-                0x00002bb4                __data_load_end = (__data_load_start + SIZEOF (.data))
+ COMMON         0x0080025d       0x9a iv.o
+                0x0080025d                t
+                0x00800261                time_h
+                0x00800262                strBuffer
+                0x008002e2                date_y
+                0x008002e3                alarm_m
+                0x008002e4                volume
+                0x008002e5                date_d
+                0x008002e6                display
+                0x008002ef                time_m
+                0x008002f0                alarm_on
+                0x008002f1                alarm_h
+                0x008002f2                brightness_level
+                0x008002f3                alarming
+                0x008002f4                displaymode
+                0x008002f5                date_m
+                0x008002f6                time_s
+                0x008002f7                PROVIDE (__bss_end, .)
+                0x00002e30                __data_load_start = LOADADDR (.data)
+                0x00002f76                __data_load_end = (__data_load_start + SIZEOF (.data))
 
-.noinit         0x008002f6        0x0
-                0x008002f6                PROVIDE (__noinit_start, .)
+.noinit         0x008002f7        0x0
+                0x008002f7                PROVIDE (__noinit_start, .)
  *(.noinit*)
-                0x008002f6                PROVIDE (__noinit_end, .)
-                0x008002f6                _end = .
-                0x008002f6                PROVIDE (__heap_start, .)
+                0x008002f7                PROVIDE (__noinit_end, .)
+                0x008002f7                _end = .
+                0x008002f7                PROVIDE (__heap_start, .)
 
 .eeprom         0x00810000        0x0
  *(.eeprom*)
@@ -502,27 +480,11 @@ LOAD /usr/local/lib/gcc/avr/4.3.4/avr5/libgcc.a
 .signature
  *(.signature*)
 
-.stab           0x00000000     0x5f64
+.stab
  *(.stab)
- .stab          0x00000000      0x6b4 /usr/local/lib/gcc/avr/4.3.4/../../../../avr/lib/avr5/crtm168.o
- .stab          0x000006b4     0x4aac iv.o
-                               0x4ab8 (size before relaxing)
- .stab          0x00005160      0xa98 util.o
-                                0xcfc (size before relaxing)
- .stab          0x00005bf8       0x9c /usr/local/lib/gcc/avr/4.3.4/../../../../avr/lib/avr5/libc.a(strchr.o)
-                                 0xa8 (size before relaxing)
- .stab          0x00005c94       0x84 /usr/local/lib/gcc/avr/4.3.4/../../../../avr/lib/avr5/libc.a(strcmp.o)
-                                 0x90 (size before relaxing)
- .stab          0x00005d18       0xd8 /usr/local/lib/gcc/avr/4.3.4/../../../../avr/lib/avr5/libc.a(strncat.o)
-                                 0xe4 (size before relaxing)
- .stab          0x00005df0       0x90 /usr/local/lib/gcc/avr/4.3.4/../../../../avr/lib/avr5/libc.a(eerd_byte_atmega168.o)
-                                 0x9c (size before relaxing)
- .stab          0x00005e80       0xe4 /usr/local/lib/gcc/avr/4.3.4/../../../../avr/lib/avr5/libc.a(eewr_byte_atmega168.o)
-                                 0xf0 (size before relaxing)
 
-.stabstr        0x00000000     0x194c
+.stabstr
  *(.stabstr)
- .stabstr       0x00000000     0x194c /usr/local/lib/gcc/avr/4.3.4/../../../../avr/lib/avr5/crtm168.o
 
 .stab.excl
  *(.stab.excl)
@@ -551,115 +513,139 @@ LOAD /usr/local/lib/gcc/avr/4.3.4/avr5/libgcc.a
 .debug_sfnames
  *(.debug_sfnames)
 
-.debug_aranges
+.debug_aranges  0x00000000       0x40
  *(.debug_aranges)
+ .debug_aranges
+                0x00000000       0x20 iv.o
+ .debug_aranges
+                0x00000020       0x20 util.o
 
 .debug_pubnames
+                0x00000000      0x63f
  *(.debug_pubnames)
+ .debug_pubnames
+                0x00000000      0x557 iv.o
+ .debug_pubnames
+                0x00000557       0xe8 util.o
 
-.debug_info
+.debug_info     0x00000000     0x25eb
  *(.debug_info)
+ .debug_info    0x00000000     0x215b iv.o
+ .debug_info    0x0000215b      0x490 util.o
  *(.gnu.linkonce.wi.*)
 
-.debug_abbrev
+.debug_abbrev   0x00000000      0x502
  *(.debug_abbrev)
+ .debug_abbrev  0x00000000      0x33d iv.o
+ .debug_abbrev  0x0000033d      0x1c5 util.o
 
-.debug_line
+.debug_line     0x00000000     0x30a5
  *(.debug_line)
+ .debug_line    0x00000000     0x2c28 iv.o
+ .debug_line    0x00002c28      0x47d util.o
 
-.debug_frame
+.debug_frame    0x00000000      0x3e0
  *(.debug_frame)
+ .debug_frame   0x00000000      0x300 iv.o
+ .debug_frame   0x00000300       0xe0 util.o
 
-.debug_str
+.debug_str      0x00000000      0x659
  *(.debug_str)
+ .debug_str     0x00000000      0x5a8 iv.o
+                                0x621 (size before relaxing)
+ .debug_str     0x000005a8       0xb1 util.o
+                                0x1c2 (size before relaxing)
 
-.debug_loc
+.debug_loc      0x00000000     0x119c
  *(.debug_loc)
+ .debug_loc     0x00000000      0xec1 iv.o
+ .debug_loc     0x00000ec1      0x2db util.o
 
 .debug_macinfo
  *(.debug_macinfo)
 OUTPUT(iv.elf elf32-avr)
 LOAD linker stubs
 
+.debug_ranges   0x00000000      0x240
+ .debug_ranges  0x00000000      0x150 iv.o
+ .debug_ranges  0x00000150       0xf0 util.o
+
 Cross Reference Table
 
 Symbol                                            File
 ROM_putstring                                     util.o
                                                   iv.o
-__bad_interrupt                                   /usr/local/lib/gcc/avr/4.3.4/../../../../avr/lib/avr5/crtm168.o
-__bss_end                                         /usr/local/lib/gcc/avr/4.3.4/avr5/libgcc.a(_clear_bss.o)
-__bss_start                                       /usr/local/lib/gcc/avr/4.3.4/avr5/libgcc.a(_clear_bss.o)
-__data_end                                        /usr/local/lib/gcc/avr/4.3.4/avr5/libgcc.a(_copy_data.o)
-__data_load_start                                 /usr/local/lib/gcc/avr/4.3.4/avr5/libgcc.a(_copy_data.o)
-__data_start                                      /usr/local/lib/gcc/avr/4.3.4/avr5/libgcc.a(_copy_data.o)
-__divmodhi4                                       /usr/local/lib/gcc/avr/4.3.4/avr5/libgcc.a(_divmodhi4.o)
+__bad_interrupt                                   /Applications/Arduino.app/Contents/Resources/Java/hardware/tools/avr/bin/../lib/gcc/avr/4.3.2/../../../../avr/lib/avr5/crtm168.o
+__bss_end                                         /Applications/Arduino.app/Contents/Resources/Java/hardware/tools/avr/bin/../lib/gcc/avr/4.3.2/avr5/libgcc.a(_clear_bss.o)
+__bss_start                                       /Applications/Arduino.app/Contents/Resources/Java/hardware/tools/avr/bin/../lib/gcc/avr/4.3.2/avr5/libgcc.a(_clear_bss.o)
+__data_end                                        /Applications/Arduino.app/Contents/Resources/Java/hardware/tools/avr/bin/../lib/gcc/avr/4.3.2/avr5/libgcc.a(_copy_data.o)
+__data_load_start                                 /Applications/Arduino.app/Contents/Resources/Java/hardware/tools/avr/bin/../lib/gcc/avr/4.3.2/avr5/libgcc.a(_copy_data.o)
+__data_start                                      /Applications/Arduino.app/Contents/Resources/Java/hardware/tools/avr/bin/../lib/gcc/avr/4.3.2/avr5/libgcc.a(_copy_data.o)
+__divmodhi4                                       /Applications/Arduino.app/Contents/Resources/Java/hardware/tools/avr/bin/../lib/gcc/avr/4.3.2/avr5/libgcc.a(_divmodhi4.o)
                                                   iv.o
-__divmodqi4                                       /usr/local/lib/gcc/avr/4.3.4/avr5/libgcc.a(_divmodqi4.o)
+__divmodqi4                                       /Applications/Arduino.app/Contents/Resources/Java/hardware/tools/avr/bin/../lib/gcc/avr/4.3.2/avr5/libgcc.a(_divmodqi4.o)
                                                   iv.o
-__divmodsi4                                       /usr/local/lib/gcc/avr/4.3.4/avr5/libgcc.a(_divmodsi4.o)
+__divmodsi4                                       /Applications/Arduino.app/Contents/Resources/Java/hardware/tools/avr/bin/../lib/gcc/avr/4.3.2/avr5/libgcc.a(_divmodsi4.o)
                                                   iv.o
-__do_clear_bss                                    /usr/local/lib/gcc/avr/4.3.4/avr5/libgcc.a(_clear_bss.o)
-                                                  iv.o
-__do_copy_data                                    /usr/local/lib/gcc/avr/4.3.4/avr5/libgcc.a(_copy_data.o)
-                                                  iv.o
-__eerd_byte_m168                                  /usr/local/lib/gcc/avr/4.3.4/../../../../avr/lib/avr5/libc.a(eerd_byte_atmega168.o)
-                                                  iv.o
-__eewr_byte_m168                                  /usr/local/lib/gcc/avr/4.3.4/../../../../avr/lib/avr5/libc.a(eewr_byte_atmega168.o)
-                                                  iv.o
-__eewr_r18_m168                                   /usr/local/lib/gcc/avr/4.3.4/../../../../avr/lib/avr5/libc.a(eewr_byte_atmega168.o)
-__heap_end                                        /usr/local/lib/gcc/avr/4.3.4/../../../../avr/lib/avr5/crtm168.o
-__init                                            /usr/local/lib/gcc/avr/4.3.4/../../../../avr/lib/avr5/crtm168.o
-__mulsi3                                          /usr/local/lib/gcc/avr/4.3.4/avr5/libgcc.a(_mulsi3.o)
+__do_clear_bss                                    /Applications/Arduino.app/Contents/Resources/Java/hardware/tools/avr/bin/../lib/gcc/avr/4.3.2/avr5/libgcc.a(_clear_bss.o)
                                                   util.o
                                                   iv.o
-__stack                                           /usr/local/lib/gcc/avr/4.3.4/../../../../avr/lib/avr5/crtm168.o
-__udivmodhi4                                      /usr/local/lib/gcc/avr/4.3.4/avr5/libgcc.a(_udivmodhi4.o)
-                                                  /usr/local/lib/gcc/avr/4.3.4/avr5/libgcc.a(_divmodhi4.o)
+__do_copy_data                                    /Applications/Arduino.app/Contents/Resources/Java/hardware/tools/avr/bin/../lib/gcc/avr/4.3.2/avr5/libgcc.a(_copy_data.o)
                                                   util.o
                                                   iv.o
-__udivmodqi4                                      /usr/local/lib/gcc/avr/4.3.4/avr5/libgcc.a(_udivmodqi4.o)
-                                                  /usr/local/lib/gcc/avr/4.3.4/avr5/libgcc.a(_divmodqi4.o)
+__heap_end                                        /Applications/Arduino.app/Contents/Resources/Java/hardware/tools/avr/bin/../lib/gcc/avr/4.3.2/../../../../avr/lib/avr5/crtm168.o
+__init                                            /Applications/Arduino.app/Contents/Resources/Java/hardware/tools/avr/bin/../lib/gcc/avr/4.3.2/../../../../avr/lib/avr5/crtm168.o
+__mulsi3                                          /Applications/Arduino.app/Contents/Resources/Java/hardware/tools/avr/bin/../lib/gcc/avr/4.3.2/avr5/libgcc.a(_mulsi3.o)
+                                                  util.o
                                                   iv.o
-__udivmodsi4                                      /usr/local/lib/gcc/avr/4.3.4/avr5/libgcc.a(_udivmodsi4.o)
-                                                  /usr/local/lib/gcc/avr/4.3.4/avr5/libgcc.a(_divmodsi4.o)
+__stack                                           /Applications/Arduino.app/Contents/Resources/Java/hardware/tools/avr/bin/../lib/gcc/avr/4.3.2/../../../../avr/lib/avr5/crtm168.o
+__udivmodhi4                                      /Applications/Arduino.app/Contents/Resources/Java/hardware/tools/avr/bin/../lib/gcc/avr/4.3.2/avr5/libgcc.a(_udivmodhi4.o)
+                                                  /Applications/Arduino.app/Contents/Resources/Java/hardware/tools/avr/bin/../lib/gcc/avr/4.3.2/avr5/libgcc.a(_divmodhi4.o)
+                                                  util.o
+                                                  iv.o
+__udivmodqi4                                      /Applications/Arduino.app/Contents/Resources/Java/hardware/tools/avr/bin/../lib/gcc/avr/4.3.2/avr5/libgcc.a(_udivmodqi4.o)
+                                                  /Applications/Arduino.app/Contents/Resources/Java/hardware/tools/avr/bin/../lib/gcc/avr/4.3.2/avr5/libgcc.a(_divmodqi4.o)
+                                                  iv.o
+__udivmodsi4                                      /Applications/Arduino.app/Contents/Resources/Java/hardware/tools/avr/bin/../lib/gcc/avr/4.3.2/avr5/libgcc.a(_udivmodsi4.o)
+                                                  /Applications/Arduino.app/Contents/Resources/Java/hardware/tools/avr/bin/../lib/gcc/avr/4.3.2/avr5/libgcc.a(_divmodsi4.o)
                                                   util.o
                                                   iv.o
 __vector_1                                        iv.o
-                                                  /usr/local/lib/gcc/avr/4.3.4/../../../../avr/lib/avr5/crtm168.o
-__vector_10                                       /usr/local/lib/gcc/avr/4.3.4/../../../../avr/lib/avr5/crtm168.o
-__vector_11                                       /usr/local/lib/gcc/avr/4.3.4/../../../../avr/lib/avr5/crtm168.o
-__vector_12                                       /usr/local/lib/gcc/avr/4.3.4/../../../../avr/lib/avr5/crtm168.o
-__vector_13                                       /usr/local/lib/gcc/avr/4.3.4/../../../../avr/lib/avr5/crtm168.o
-__vector_14                                       /usr/local/lib/gcc/avr/4.3.4/../../../../avr/lib/avr5/crtm168.o
-__vector_15                                       /usr/local/lib/gcc/avr/4.3.4/../../../../avr/lib/avr5/crtm168.o
+                                                  /Applications/Arduino.app/Contents/Resources/Java/hardware/tools/avr/bin/../lib/gcc/avr/4.3.2/../../../../avr/lib/avr5/crtm168.o
+__vector_10                                       /Applications/Arduino.app/Contents/Resources/Java/hardware/tools/avr/bin/../lib/gcc/avr/4.3.2/../../../../avr/lib/avr5/crtm168.o
+__vector_11                                       /Applications/Arduino.app/Contents/Resources/Java/hardware/tools/avr/bin/../lib/gcc/avr/4.3.2/../../../../avr/lib/avr5/crtm168.o
+__vector_12                                       /Applications/Arduino.app/Contents/Resources/Java/hardware/tools/avr/bin/../lib/gcc/avr/4.3.2/../../../../avr/lib/avr5/crtm168.o
+__vector_13                                       /Applications/Arduino.app/Contents/Resources/Java/hardware/tools/avr/bin/../lib/gcc/avr/4.3.2/../../../../avr/lib/avr5/crtm168.o
+__vector_14                                       /Applications/Arduino.app/Contents/Resources/Java/hardware/tools/avr/bin/../lib/gcc/avr/4.3.2/../../../../avr/lib/avr5/crtm168.o
+__vector_15                                       /Applications/Arduino.app/Contents/Resources/Java/hardware/tools/avr/bin/../lib/gcc/avr/4.3.2/../../../../avr/lib/avr5/crtm168.o
 __vector_16                                       iv.o
-                                                  /usr/local/lib/gcc/avr/4.3.4/../../../../avr/lib/avr5/crtm168.o
-__vector_17                                       /usr/local/lib/gcc/avr/4.3.4/../../../../avr/lib/avr5/crtm168.o
-__vector_18                                       /usr/local/lib/gcc/avr/4.3.4/../../../../avr/lib/avr5/crtm168.o
-__vector_19                                       /usr/local/lib/gcc/avr/4.3.4/../../../../avr/lib/avr5/crtm168.o
-__vector_2                                        /usr/local/lib/gcc/avr/4.3.4/../../../../avr/lib/avr5/crtm168.o
-__vector_20                                       /usr/local/lib/gcc/avr/4.3.4/../../../../avr/lib/avr5/crtm168.o
+                                                  /Applications/Arduino.app/Contents/Resources/Java/hardware/tools/avr/bin/../lib/gcc/avr/4.3.2/../../../../avr/lib/avr5/crtm168.o
+__vector_17                                       /Applications/Arduino.app/Contents/Resources/Java/hardware/tools/avr/bin/../lib/gcc/avr/4.3.2/../../../../avr/lib/avr5/crtm168.o
+__vector_18                                       /Applications/Arduino.app/Contents/Resources/Java/hardware/tools/avr/bin/../lib/gcc/avr/4.3.2/../../../../avr/lib/avr5/crtm168.o
+__vector_19                                       /Applications/Arduino.app/Contents/Resources/Java/hardware/tools/avr/bin/../lib/gcc/avr/4.3.2/../../../../avr/lib/avr5/crtm168.o
+__vector_2                                        /Applications/Arduino.app/Contents/Resources/Java/hardware/tools/avr/bin/../lib/gcc/avr/4.3.2/../../../../avr/lib/avr5/crtm168.o
+__vector_20                                       /Applications/Arduino.app/Contents/Resources/Java/hardware/tools/avr/bin/../lib/gcc/avr/4.3.2/../../../../avr/lib/avr5/crtm168.o
 __vector_21                                       iv.o
-                                                  /usr/local/lib/gcc/avr/4.3.4/../../../../avr/lib/avr5/crtm168.o
-__vector_22                                       /usr/local/lib/gcc/avr/4.3.4/../../../../avr/lib/avr5/crtm168.o
+                                                  /Applications/Arduino.app/Contents/Resources/Java/hardware/tools/avr/bin/../lib/gcc/avr/4.3.2/../../../../avr/lib/avr5/crtm168.o
+__vector_22                                       /Applications/Arduino.app/Contents/Resources/Java/hardware/tools/avr/bin/../lib/gcc/avr/4.3.2/../../../../avr/lib/avr5/crtm168.o
 __vector_23                                       iv.o
-                                                  /usr/local/lib/gcc/avr/4.3.4/../../../../avr/lib/avr5/crtm168.o
-__vector_24                                       /usr/local/lib/gcc/avr/4.3.4/../../../../avr/lib/avr5/crtm168.o
-__vector_25                                       /usr/local/lib/gcc/avr/4.3.4/../../../../avr/lib/avr5/crtm168.o
+                                                  /Applications/Arduino.app/Contents/Resources/Java/hardware/tools/avr/bin/../lib/gcc/avr/4.3.2/../../../../avr/lib/avr5/crtm168.o
+__vector_24                                       /Applications/Arduino.app/Contents/Resources/Java/hardware/tools/avr/bin/../lib/gcc/avr/4.3.2/../../../../avr/lib/avr5/crtm168.o
+__vector_25                                       /Applications/Arduino.app/Contents/Resources/Java/hardware/tools/avr/bin/../lib/gcc/avr/4.3.2/../../../../avr/lib/avr5/crtm168.o
 __vector_3                                        iv.o
-                                                  /usr/local/lib/gcc/avr/4.3.4/../../../../avr/lib/avr5/crtm168.o
-__vector_4                                        /usr/local/lib/gcc/avr/4.3.4/../../../../avr/lib/avr5/crtm168.o
+                                                  /Applications/Arduino.app/Contents/Resources/Java/hardware/tools/avr/bin/../lib/gcc/avr/4.3.2/../../../../avr/lib/avr5/crtm168.o
+__vector_4                                        /Applications/Arduino.app/Contents/Resources/Java/hardware/tools/avr/bin/../lib/gcc/avr/4.3.2/../../../../avr/lib/avr5/crtm168.o
 __vector_5                                        iv.o
-                                                  /usr/local/lib/gcc/avr/4.3.4/../../../../avr/lib/avr5/crtm168.o
-__vector_6                                        /usr/local/lib/gcc/avr/4.3.4/../../../../avr/lib/avr5/crtm168.o
-__vector_7                                        /usr/local/lib/gcc/avr/4.3.4/../../../../avr/lib/avr5/crtm168.o
-__vector_8                                        /usr/local/lib/gcc/avr/4.3.4/../../../../avr/lib/avr5/crtm168.o
+                                                  /Applications/Arduino.app/Contents/Resources/Java/hardware/tools/avr/bin/../lib/gcc/avr/4.3.2/../../../../avr/lib/avr5/crtm168.o
+__vector_6                                        /Applications/Arduino.app/Contents/Resources/Java/hardware/tools/avr/bin/../lib/gcc/avr/4.3.2/../../../../avr/lib/avr5/crtm168.o
+__vector_7                                        /Applications/Arduino.app/Contents/Resources/Java/hardware/tools/avr/bin/../lib/gcc/avr/4.3.2/../../../../avr/lib/avr5/crtm168.o
+__vector_8                                        /Applications/Arduino.app/Contents/Resources/Java/hardware/tools/avr/bin/../lib/gcc/avr/4.3.2/../../../../avr/lib/avr5/crtm168.o
 __vector_9                                        iv.o
-                                                  /usr/local/lib/gcc/avr/4.3.4/../../../../avr/lib/avr5/crtm168.o
-__vector_default                                  /usr/local/lib/gcc/avr/4.3.4/../../../../avr/lib/avr5/crtm168.o
-__vectors                                         /usr/local/lib/gcc/avr/4.3.4/../../../../avr/lib/avr5/crtm168.o
-_div                                              /usr/local/lib/gcc/avr/4.3.4/avr5/libgcc.a(_divmodhi4.o)
-_exit                                             /usr/local/lib/gcc/avr/4.3.4/avr5/libgcc.a(_exit.o)
+                                                  /Applications/Arduino.app/Contents/Resources/Java/hardware/tools/avr/bin/../lib/gcc/avr/4.3.2/../../../../avr/lib/avr5/crtm168.o
+__vector_default                                  /Applications/Arduino.app/Contents/Resources/Java/hardware/tools/avr/bin/../lib/gcc/avr/4.3.2/../../../../avr/lib/avr5/crtm168.o
+__vectors                                         /Applications/Arduino.app/Contents/Resources/Java/hardware/tools/avr/bin/../lib/gcc/avr/4.3.2/../../../../avr/lib/avr5/crtm168.o
+_div                                              /Applications/Arduino.app/Contents/Resources/Java/hardware/tools/avr/bin/../lib/gcc/avr/4.3.2/avr5/libgcc.a(_divmodhi4.o)
+_exit                                             /Applications/Arduino.app/Contents/Resources/Java/hardware/tools/avr/bin/../lib/gcc/avr/4.3.2/avr5/libgcc.a(_exit.o)
 alarm_h                                           iv.o
 alarm_m                                           iv.o
 alarm_on                                          iv.o
@@ -693,8 +679,8 @@ display_str                                       iv.o
 display_time                                      iv.o
 display_timezone                                  iv.o
 displaymode                                       iv.o
-exit                                              /usr/local/lib/gcc/avr/4.3.4/avr5/libgcc.a(_exit.o)
-                                                  /usr/local/lib/gcc/avr/4.3.4/../../../../avr/lib/avr5/crtm168.o
+exit                                              /Applications/Arduino.app/Contents/Resources/Java/hardware/tools/avr/bin/../lib/gcc/avr/4.3.2/avr5/libgcc.a(_exit.o)
+                                                  /Applications/Arduino.app/Contents/Resources/Java/hardware/tools/avr/bin/../lib/gcc/avr/4.3.2/../../../../avr/lib/avr5/crtm168.o
 fix_time                                          iv.o
 getgpstime                                        iv.o
 gotosleep                                         iv.o
@@ -708,7 +694,7 @@ kickthedog                                        iv.o
 last_buttonstate                                  iv.o
 leapyear                                          iv.o
 main                                              iv.o
-                                                  /usr/local/lib/gcc/avr/4.3.4/../../../../avr/lib/avr5/crtm168.o
+                                                  /Applications/Arduino.app/Contents/Resources/Java/hardware/tools/avr/bin/../lib/gcc/avr/4.3.2/../../../../avr/lib/avr5/crtm168.o
 milliseconds                                      iv.o
 muxdiv                                            iv.o
 numbertable                                       iv.o
@@ -716,6 +702,7 @@ numbertable_p                                     iv.o
 pressed                                           iv.o
 region                                            iv.o
 restored                                          iv.o
+secondDisp                                        iv.o
 segmenttable                                      iv.o
 segmenttable_p                                    iv.o
 set_alarm                                         iv.o
@@ -736,11 +723,11 @@ snoozetimer                                       iv.o
 speaker_init                                      iv.o
 spi_xfer                                          iv.o
 strBuffer                                         iv.o
-strchr                                            /usr/local/lib/gcc/avr/4.3.4/../../../../avr/lib/avr5/libc.a(strchr.o)
+strchr                                            /Applications/Arduino.app/Contents/Resources/Java/hardware/tools/avr/bin/../lib/gcc/avr/4.3.2/../../../../avr/lib/avr5/libc.a(strchr.o)
                                                   iv.o
-strcmp                                            /usr/local/lib/gcc/avr/4.3.4/../../../../avr/lib/avr5/libc.a(strcmp.o)
+strcmp                                            /Applications/Arduino.app/Contents/Resources/Java/hardware/tools/avr/bin/../lib/gcc/avr/4.3.2/../../../../avr/lib/avr5/libc.a(strcmp.o)
                                                   iv.o
-strncat                                           /usr/local/lib/gcc/avr/4.3.4/../../../../avr/lib/avr5/libc.a(strncat.o)
+strncat                                           /Applications/Arduino.app/Contents/Resources/Java/hardware/tools/avr/bin/../lib/gcc/avr/4.3.2/../../../../avr/lib/avr5/libc.a(strncat.o)
                                                   iv.o
 t                                                 iv.o
 tick                                              iv.o
