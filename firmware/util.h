@@ -59,4 +59,4 @@ void ROM_putstring(const char *str, uint8_t nl);
 
 #define putstring(x) ROM_putstring(PSTR(x), 0)
 #define putstring_nl(x) ROM_putstring(PSTR(x), 1)
-#define nop asm volatile ("nop\n\t")
+#define nop asm volatile ("nop")

@@ -39,6 +39,7 @@
 #include "iv.h"
 #include "util.h"
 #include "fonttable.h"
+#include "twi.c"
 
 uint8_t region = REGION_US;
 
@@ -62,7 +63,6 @@ volatile uint8_t displaymode;
 // are we in low power sleep mode?
 volatile uint8_t sleepmode = 0;
 
-volatile uint8_t timeunknown = 0;        // MEME
 volatile uint8_t restored = 0;
 
 // String buffer for processing GPS data:
@@ -95,6 +95,29 @@ const uint8_t segmenttable[] PROGMEM = {
 	SEG_H, SEG_G,  SEG_F,  SEG_E,  SEG_D,  SEG_C,  SEG_B,  SEG_A 
 };
 PGM_P segmenttable_p PROGMEM = segmenttable;
+
+/**************** global flags *********************/
+
+volatile uint8_t flags;
+#define f_dst_offset 0		// Value to add to display time (must be bit 0)
+#define f_timeunknown 1		// TRUE if time never set
+#define f_dst_enable 2		// Daylight saving time enabled
+#define f_display_update 3	// Tells main loop when displayed time has changed
+#define f_alarm_on 4		// Alarm is switched on
+#define f_show_time 5		// Displaying time, or something else
+
+#define flag(n) (flags & _BV(n))
+#define set_flag(n) flags |= _BV(n)
+#define clr_flag(n) flags &= ~_BV(n)
+
+inline void set_dst_offset (uint8_t y, uint8_t m, uint8_t d, uint8_t h) {
+	if (dst (y, m, d, h))
+		set_flag (f_dst_offset);
+	else
+		clr_flag (f_dst_offset);
+}
+
+/**************************************************/
 
 // muxdiv and MUX_DIVIDER divides down a high speed interrupt (31.25KHz)
 // down so that we can refresh at about 100Hz (31.25KHz / 300)
@@ -320,11 +343,8 @@ SIGNAL (TIMER2_OVF_vect) {
 
 
 	if (displaymode == SHOW_TIME) {
-		if (timeunknown && (time_s % 2)) {
-			display_str("        ");
-		} else {
-			display_time(time_h, time_m, time_s);
-		}
+		display_time(time_h, time_m, time_s);
+
 		if (alarm_on)
 			display[0] |= 0x2;
 		else 
@@ -540,7 +560,7 @@ int main(void) {
 
 	// we lost power at some point so lets alert the user
 	// that the time may be wrong (the clock still works)
-	timeunknown = 1;
+	//timeunknown = 1;
 
 	// have we read the time & date from eeprom?
 	restored = 0;
@@ -555,69 +575,58 @@ int main(void) {
 	uart_putw_dec(BUFFERSIZE);
 	uart_puts("\n\r");
 
-	//DEBUGP("turning on anacomp");
-	// set up analog comparator
-	ACSR = _BV(ACBG) | _BV(ACIE); // use bandgap, intr. on toggle!
-	_delay_ms(1);
-	// settle!
-	if (ACSR & _BV(ACO)) {
-		// hmm we should not interrupt here
-		ACSR |= _BV(ACI);
+	// we aren't in low power mode so init stuff
 
-		// even in low power mode, we run the clock 
-		DEBUGP("clock init");
-		clock_init();  
+	// init IOs
+	initbuttons();
 
-	} else {
-		// we aren't in low power mode so init stuff
+	VFDSWITCH_PORT &= ~_BV(VFDSWITCH);
 
-		// init IOs
-		initbuttons();
+	DEBUGP("turning on buttons");
+	// set up button interrupts
+	DEBUGP("turning on alarmsw");
+	// set off an interrupt if alarm is set or unset
+	EICRA = _BV(ISC00);
+	EIMSK = _BV(INT0);
 
-		VFDSWITCH_PORT &= ~_BV(VFDSWITCH);
-
-		DEBUGP("turning on buttons");
-		// set up button interrupts
-		DEBUGP("turning on alarmsw");
-		// set off an interrupt if alarm is set or unset
-		EICRA = _BV(ISC00);
-		EIMSK = _BV(INT0);
-
-		displaymode = SHOW_TIME;
-		DEBUGP("vfd init");
-		vfd_init();
+	displaymode = SHOW_TIME;
+	DEBUGP("vfd init");
+	vfd_init();
 
 #ifdef FEATURE_AUTODIM
-		dimmer_init();
+	dimmer_init();
 #endif
 
-		DEBUGP("boost init");
-		brightness_level = eeprom_read_byte((uint8_t *)EE_BRIGHT);
-		boost_init(brightness_level);
-		sei();
+	DEBUGP("boost init");
+	brightness_level = eeprom_read_byte((uint8_t *)EE_BRIGHT);
+	boost_init(brightness_level);
+	sei();
 
-		//Load and check the timezone information
-		intTimeZoneHour = eeprom_read_byte((uint8_t *)EE_ZONE_HOUR);
-		if ( ( 12 < intTimeZoneHour ) || ( -12 > intTimeZoneHour ) )
-			intTimeZoneHour = 0;
+	//Load and check the timezone information
+	intTimeZoneHour = eeprom_read_byte((uint8_t *)EE_ZONE_HOUR);
+	if ( ( 12 < intTimeZoneHour ) || ( -12 > intTimeZoneHour ) )
+		intTimeZoneHour = 0;
 
-		intTimeZoneMin = eeprom_read_byte((uint8_t *)EE_ZONE_MIN);
-		if ( ( 60 < intTimeZoneMin ) || ( 0 > intTimeZoneMin ) )
-			intTimeZoneMin = 0;
+	intTimeZoneMin = eeprom_read_byte((uint8_t *)EE_ZONE_MIN);
+	if ( ( 60 < intTimeZoneMin ) || ( 0 > intTimeZoneMin ) )
+		intTimeZoneMin = 0;
 
-		region = eeprom_read_byte((uint8_t *)EE_REGION);
+	region = eeprom_read_byte((uint8_t *)EE_REGION);
 
-		DEBUGP("speaker init");
-		speaker_init();
+	DEBUGP("speaker init");
+	speaker_init();
 
-		beep(4000, 1);
+	beep(4000, 1);
 
-		DEBUGP("clock init");
-		clock_init();  
+	DEBUGP("clock init");
+	rtc_init();
+	clock_init();  
 
-		DEBUGP("alarm init");
-		setalarmstate();
-	}
+	sei();
+
+	DEBUGP("alarm init");
+	alarm_init();
+
 	DEBUGP("done");
 	while (1) {
 		//_delay_ms(100);
@@ -641,7 +650,7 @@ int main(void) {
 					displaymode = SET_TIME;
 					display_str("set time");
 					set_time();
-					timeunknown = 0;
+					//timeunknown = 0;
 					break;
 				case (SET_TIME):
 					displaymode = SET_DATE;
@@ -693,11 +702,14 @@ int main(void) {
 			displaymode = SHOW_TIME;     
 		}
 
-		//Check to see if GPS data is ready:
-		if ( gpsdataready() ) {
-			getgpstime();
+		uint8_t h = (time_h + flag(f_dst_offset)) % 24;		// DST-adjusted hour
+		//if (flag(f_timeunknown) && (time_s % 2))
+			//display_clear();
+		//else
+		display_time(h, time_m, time_s);
 
-		}
+		if (h == 2 && time_m == 30 && time_s == 0)
+			clock_init();	// Re-sync with ChronoDot once a day
 
 	}
 }
@@ -779,6 +791,15 @@ void set_alarm(void)
 	}
 }
 
+uint8_t b2bcd (uint8_t b) {
+	return ((b / 10) << 4) | (b % 10);
+}
+
+uint8_t bcd2b (uint8_t bcd) {
+	return (bcd & 0x0f) + (bcd >> 4) * 10;
+}
+
+
 void set_time(void) 
 {
 	uint8_t mode;
@@ -827,9 +848,26 @@ void set_time(void)
 				display[8] |= 0x1;
 			} else {
 				// done!
+				uint8_t dt[3];
+				uint8_t i;
+				
+				for (i = 0; i < 7; i++)
+					twiWriteReg(0xd0, 0x07+i, i+1);		// Write check values into alarm fields
+				
 				time_h = hour;
 				time_m = min;
 				time_s = sec;
+				
+				TCNT2 = 0;		// Sync AVR to start of seconds
+				
+				// Update ChronoDot
+				dt[1] = b2bcd(sec);
+				dt[1] = b2bcd(min);
+				dt[2] = b2bcd(hour);
+				twiWriteRegN(0xd0, 0x00, 3, dt);
+				
+				DEBUGP ("ChronoDot set!");
+				
 				displaymode = SHOW_TIME;
 				return;
 			}
@@ -871,6 +909,8 @@ void set_time(void)
 
 void set_date(void) {
 	uint8_t mode = SHOW_MENU;
+	uint8_t m, d, y;
+	uint8_t dt[4];
 
 	timeoutcounter = INACTIVITYTIMEOUT;;  
 
@@ -919,6 +959,21 @@ void set_date(void) {
 			} else {
 				displaymode = NONE;
 				display_date(DATE);
+
+				d=date_d;
+				m=date_m;
+				y=date_y;
+				
+				sei();
+				
+				dt[0] = dow (y, m, d);
+				dt[1] = b2bcd(d);
+				dt[2] = b2bcd(m);
+				dt[3] = b2bcd(y);
+				twiWriteRegN(0xd0, 0x3, 4, dt);		// Update ChronoDot
+				
+				//set_dst_offset (date_y, date_m, date_d, time_h);
+				display_date (DATE);
 				delayms(1500);
 				displaymode = SHOW_TIME;
 				return;
@@ -1167,9 +1222,6 @@ void set_volume(void) {
 	}
 }
 
-
-
-
 void set_region(void) {
 	uint8_t mode = SHOW_MENU;
 
@@ -1219,99 +1271,75 @@ void set_region(void) {
 	}
 }
 
-
-/*
-   void set_snooze(void) {
-   uint8_t mode = SHOW_MENU;
-   uint8_t snooze;
-
-   timeoutcounter = INACTIVITYTIMEOUT;;  
-   snooze = eeprom_read_byte((uint8_t *)EE_SNOOZE);
-
-   while (1) {
-   if (just_pressed || pressed) {
-   timeoutcounter = INACTIVITYTIMEOUT;;  
-// timeout w/no buttons pressed after 3 seconds?
-} else if (!timeoutcounter) {
-//timed out!
-displaymode = SHOW_TIME;     
-return;
-}
-if (just_pressed & 0x1) { // mode change
-return;
-}
-if (just_pressed & 0x2) {
-
-just_pressed = 0;
-if (mode == SHOW_MENU) {
-// start!
-mode = SET_SNOOZE;
-// display snooze
-display_str("   minut");
-display[1] = pgm_read_byte(numbertable_p + (snooze / 10)) | 0x1;
-display[2] = pgm_read_byte(numbertable_p + (snooze % 10)) | 0x1;
-} else { 
-displaymode = SHOW_TIME;
-return;
-}
-}
-if ((just_pressed & 0x4) || (pressed & 0x4)) {
-just_pressed = 0;
-if (mode == SET_SNOOZE) {
-snooze ++;
-if (snooze >= 100)
-snooze = 0;
-display[1] = pgm_read_byte(numbertable_p + (snooze / 10)) | 0x1;
-display[2] = pgm_read_byte(numbertable_p + (snooze % 10)) | 0x1;
-eeprom_write_byte((uint8_t *)EE_SNOOZE, snooze);
-}
-
-if (pressed & 0x4)
-delayms(75);
-
-}
-}
-}
-*/
-
-
 /**************************** RTC & ALARM *****************************/
+
 void clock_init(void) {
-	// we store the time in EEPROM when switching from power modes so its
-	// reasonable to start with whats in memory
-	time_h = eeprom_read_byte((uint8_t *)EE_HOUR) % 24;
-	time_m = eeprom_read_byte((uint8_t *)EE_MIN) % 60;
-	time_s = eeprom_read_byte((uint8_t *)EE_SEC) % 60;
+	uint8_t dt[7];
+	uint8_t i;
+	
+	// Initialize Daylight Saving Time enable
+	if (eeprom_read_byte ((uint8_t *)EE_DST))
+		set_flag(f_dst_enable);
+	else
+		clr_flag(f_dst_enable);
+	
+	// Read check values from ChronoDot alarm fields
+	twiReadRegN(0xd0, 0x07, 7, dt);
+	for (i = 0; i < 7; i++)
+		if (dt[i] != i+1) break;
+	if (i != 7) {
+		DEBUGP("ChronoDot check failed!");
+		set_flag (f_timeunknown);	// let customer know time needs setting
+	} else {
+		// Sync to start of ChronoDot second
+		cli();
+		
+		time_s = twiReadReg(0xd0, 0x00);
+		do twiReadRegN(0xd0, 0x00, 7, dt); while (dt[0] == time_s);
 
-	/*
-	// if you're debugging, having the makefile set the right
-	// time automatically will be very handy. Otherwise don't use this
-	time_h = TIMEHOUR;
-	time_m = TIMEMIN;
-	time_s = TIMESEC + 10;
-	*/
+		// Zero T/C2 to sync AVR to start of seconds
+		GTCCR |= _BV(PSRASY) | _BV(TSM);
+		TCNT2 = 0;		
+		GTCCR &= ~_BV(TSM);
+		
+		time_s = bcd2b (dt[0]);		// BCD to binary decode
+		time_m = bcd2b (dt[1]);
+		time_h = bcd2b (dt[2] & 0x3f);
 
-	// Set up the stored alarm time and date
-	alarm_m = eeprom_read_byte((uint8_t *)EE_ALARM_MIN) % 60;
-	alarm_h = eeprom_read_byte((uint8_t *)EE_ALARM_HOUR) % 24;
+		date_d = bcd2b (dt[4]);
+		date_m = bcd2b (dt[5] & 0x1f);
+		date_y = bcd2b (dt[6]);
+		
+		sei();
 
-	date_y = eeprom_read_byte((uint8_t *)EE_YEAR) % 100;
-	date_m = eeprom_read_byte((uint8_t *)EE_MONTH) % 13;
-	date_d = eeprom_read_byte((uint8_t *)EE_DAY) % 32;
+		clr_flag (f_timeunknown);
+		
+		// Initialize DST now since it is only done at top of hour
+		set_dst_offset (date_y, date_m, date_d, time_h);
 
-	restored = 1;
+	}
+}
 
-	// Turn on the RTC by selecting the external 32khz crystal
+// Turn on the RTC by selecting the external 32khz crystal
+void rtc_init (void) {
 	// 32.768 / 128 = 256 which is exactly an 8-bit timer overflow
+	ASSR |= _BV(EXCLK);		// External clock (comment out if using xtal)
 	ASSR |= _BV(AS2); // use crystal
+	TCCR2A = 0;
 	TCCR2B = _BV(CS22) | _BV(CS20); // div by 128
 	// We will overflow once a second, and call an interrupt
 
-	// enable interrupt
-	TIMSK2 = _BV(TOIE2);
+	CLKPR = _BV(CLKPCE);	// CPU clock division factor to 1
+	CLKPR = 0;
 
-	// enable all interrupts!
-	sei();
+	// enable interrupt on overflow
+	TIMSK2 = _BV(TOIE2);
+}
+
+// Set up the stored alarm time and date
+void alarm_init (void) {
+	alarm_m = eeprom_read_byte((uint8_t *)EE_ALARM_MIN) % 60;
+	alarm_h = eeprom_read_byte((uint8_t *)EE_ALARM_HOUR) % 24;
 }
 
 // This turns on/off the alarm when the switch has been
@@ -1352,12 +1380,78 @@ void setalarmstate(void) {
 	}
 }
 
-// This will calculate leapyears, give it the year
+/**************************** TIME CALCULATIONS *****************************/
+
+char dow_tbl[] PROGMEM = {0, 3, 2, 5, 0, 3, 5, 1, 4, 6, 2, 4};
+
+// Calculate day of the week by Sakamoto's method, 0=Sunday
+uint8_t dow (uint8_t y, uint8_t m, uint8_t d)
+{
+	uint16_t yy;		
+
+	yy = y + 2000 - (m < 3);
+	return (yy + yy/4 - yy/100 + yy/400 + pgm_read_byte(dow_tbl + m-1) + d) % 7;
+}
+
+// This will calculate leap years, give it the year
 // and it will return 1 (true) or 0 (false)
-uint8_t leapyear(uint16_t y) {
+uint8_t leapyear(uint16_t y) 
+{
 	return ( (!(y % 4) && (y % 100)) || !(y % 400));
 }
 
+const char mon_tbl[] PROGMEM = {31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31};
+PGM_P mon_tbl_p PROGMEM = mon_tbl;
+
+uint8_t monthlen(uint8_t y, uint8_t m)
+{
+	uint8_t ml;
+	if (m == 2 && leapyear(y+2000))
+		ml = 29;
+	else
+		ml = pgm_read_byte(mon_tbl_p + (m-1));
+	return ml;
+}
+
+#define March 3
+#define October 10
+#define November 11
+
+// Returns 1 if specified point in time is subject to
+// daylight savings' time, 0 otherwise.
+uint8_t dst (uint8_t y, uint8_t m, uint8_t d, uint8_t h)
+{
+	uint8_t day;
+	
+	if (!flag(f_dst_enable)) return 0;
+	
+	if (region == REGION_US) {
+		if (March < m && m < November)
+			return 1;
+		else if (m == March) {
+			day = 14 - dow (y, March, 14);	// 2nd Sunday
+			return (d > day) || ((d == day) && (h > 1));
+		} else if (m == November) {
+			day = 7 - dow (y, November, 7);	// 1st Sunday
+			return (d < day) || ((d == day) && (h < 1));
+		} else
+			return 0;
+	} else {
+		// European transition hour may be off, depending on timezone and country
+		if (March < m && m < October)
+			return 1;
+		else if (m == March) {
+			day = 31 - dow (y, March, 31);	// last Sunday
+			return (d > day) || ((d == day) && (h > 1));
+		} else if (m == October) {
+			day = 31 - dow (y, October, 31);	// last Sunday
+			return (d < day) || ((d == day) && (h < 1));
+		} else
+			return 0;		
+	}
+}
+
+/**************************** DISPLAY *****************************/
 
 /**************************** SPEAKER *****************************/
 // Set up the speaker to prepare for beeping!
@@ -1815,242 +1909,6 @@ void vfd_send(uint32_t d) {
 	sei();
 }
 
-// Send 1 byte via SPI
-void spi_xfer(uint8_t c) {
-
-	SPDR = c;
-	while (! (SPSR & _BV(SPIF)));
-}
-
-//GPS serial data handling functions:
-
-//Check to see if there is any serial data.
-uint8_t gpsdataready(void) {
-
-	return (UCSR0A & _BV(RXC0));
-
-}
-
-
-void getgpstime(void) {
-
-	uint8_t intOldHr = 0;
-	uint8_t intOldMin = 0;
-	uint8_t intOldSec = 0;
-
-	char charReceived = UDR0;
-
-	char *strPointer1;
-	char strTime[7];
-	char strDate[7];
-
-	//If the buffer has not been started because a '$' has not been encountered
-	//but a '$' is just now encountered, then start filling the buffer.
-	if ( ( 0 == intBufferStatus ) && ( '$' == charReceived ) ) {
-		intBufferStatus = 1;
-		strncat(strBuffer, &charReceived, 1);
-		return;
-	}
-
-	//If the buffer has started to fill...
-	if ( 0 != intBufferStatus ) {
-		//If for some reason, the buffer is full, clear it, and start over.
-		if ( ! ( ( strlen(strBuffer) < BUFFERSIZE ) ) ) {
-			memset( strBuffer, 0, BUFFERSIZE );
-			intBufferStatus = 0;
-			return;
-		}
-		//If the buffer has 6 characters in it, it is time to check to see if it is 
-		//the line we are looking for that starts with "$GPRMC"
-		else if ( 6 == strlen(strBuffer) ) {
-			//If the buffer does contain the characters we are looking for,
-			//then update the status, add to the buffer, and then return for more.
-			if ( 0 == strcmp( strBuffer, "$GPRMC" ) ) {
-				//uart_puts("\n\r$GPRMC Found \n\r");
-				intBufferStatus = 2;
-				strncat(strBuffer, &charReceived, 1);
-				return;
-			}
-			//If the buffer does not contain the characters we are looking for,
-			//then clear the buffer and start over..
-			else {
-				//uart_puts("\n\r$GPRMC Not Found:\t\t");
-				//uart_puts(strBuffer);
-				memset( strBuffer, 0, BUFFERSIZE );
-				intBufferStatus = 0;
-				return;
-			}
-		}
-
-		//If the asterix at the start of the checksum at the end of the line is encountered,
-		//then parse the buffer.
-		else if ( '*' == charReceived ) {
-			//If the buffer status indicates we have not already found the
-			//needed start of the string, then start over.
-			if ( 2 != intBufferStatus ) {
-				memset( strBuffer, 0, BUFFERSIZE );
-				intBufferStatus = 0;
-				return;
-			}
-			//If the buffer status indicates we have already found the needed start of the string,
-			//then go on to parse the buffer.
-			else {
-				//Parse the buffer here...
-				//Let's test to see if this works:
-				uart_puts("\n\r");
-				uart_puts(strBuffer);
-
-				//Find the first comma:
-				strPointer1 = strchr( strBuffer, ',');
-
-				//Copy the section of memory in the buffer that contains the time.
-				memcpy( strTime, strPointer1 + 1, 6 );
-				//add a null character to the end of the time string.
-				strTime[6] = 0;
-
-
-
-				//Find eight more commas to get the date:
-				for ( int i = 0; i < 8; i++ ) {
-					strPointer1 = strchr( strPointer1 + 1, ',');
-				}
-
-				//Copy the section of memory in the buffer that contains the date.
-				memcpy( strDate, strPointer1 + 1, 6 );
-				//add a null character to the end of the date string.
-				strDate[6] = 0;
-
-				//The GPS unit will not have the proper date unless it has received a time update.
-				//NOTE: at the turn of the century, the clock will not get updates from GPS
-				//for as many years as the value of PROGRAMMING_YEAR
-				if ( PROGRAMMING_YEAR <= ( ( (strDate[4] - '0') * 10 ) ) + (strDate[5] - '0') ) {
-					//Get the 'old' values of the time:
-					intOldHr = time_h;
-					intOldMin = time_m;
-					intOldSec = time_s;
-
-					//Change the time:
-					setgpstime(strTime);
-					//Change the date:
-					setgpsdate(strDate);
-
-					//Gussy up the time and date, make the numbers come out right:
-					fix_time();
-
-					//Turn the two time values into minutes past midnight
-					uint16_t timeMinutes = ((time_h * 60) + (time_m));
-					uint16_t oldTimeMinutes = ((intOldHr * 60) + (intOldMin));
-
-					int8_t intTempHr = time_h;
-					int8_t intTempMin = time_m;
-
-					//If midnight happened between the old time and the new time
-					//and we did not just go back in time...
-					if ( ( 0 > (int16_t)( timeMinutes - oldTimeMinutes ) )
-							&& ( (timeMinutes + 1440) >= oldTimeMinutes )
-							&& ( abs( timeMinutes + 1440 - oldTimeMinutes ) < abs( timeMinutes - oldTimeMinutes ) ) ) {
-						timeMinutes += 1440;
-						intTempHr += 24;
-					}
-
-					if ( timeMinutes > oldTimeMinutes ) {
-
-						//Count backwards in time to the old time, checking the alarm for each minute.
-						for ( ; intTempHr >= intOldHr; intTempHr-- ) {
-							for ( ; intTempMin >= 0; intTempMin-- ) {
-								check_alarm( (uint8_t)intTempHr, (uint8_t)intTempMin, 0 );
-							}
-							intTempMin = 59;
-						}
-
-					}
-
-				}
-
-				//We've done what we needed to do, so start over.
-				memset( strBuffer, 0, BUFFERSIZE );
-				intBufferStatus = 0;
-				return;
-			}
-		}
-		//If nothing else was found, add to the buffer.
-		else {
-			strncat(strBuffer, &charReceived, 1);
-		}
-
-
-	}
-
-}
-
-//Set the time with a string taken from GPS data:
-void setgpstime(char* str) {
-	uint8_t intTempHr = 0;
-	uint8_t intTempMin = 0;
-	uint8_t intTempSec = 0;
-
-	intTempHr = (str[0] - '0') * 10;
-	intTempHr = intTempHr + (str[1] - '0');
-
-	intTempMin = (str[2] - '0') * 10;
-	intTempMin = intTempMin + (str[3] - '0');
-
-	intTempSec = (str[4] - '0') * 10;
-	intTempSec = intTempSec + (str[5] - '0');
-
-	time_h = intTempHr + intTimeZoneHour;
-
-	//If the time zone offset is negative, then subtract minutes
-	if ( 0 > intTimeZoneHour )
-		time_m = intTempMin - intTimeZoneMin;
-	else
-		time_m = intTempMin + intTimeZoneMin;
-
-	time_s = intTempSec;
-
-	// Adjust forward 1 second to compensate for delayed update
-	time_s++;
-
-	if (time_s>=60) {
-		time_s-=60;
-		time_m++;
-		if (time_m>=60) {
-			time_m-=60;
-			time_h++;
-			if (time_h>=24) {
-				time_h-=24;
-				// for now, ignore date, since it will catch up in a second or two
-				// and I really don't care about it, since I'm not using this as
-				// an alarm.
-			}
-		}
-	}
-}
-
-//Set the date with a string taken from GPS data:
-void setgpsdate(char* str) {
-	uint8_t intTempDay = 0;
-	uint8_t intTempMon = 0;
-	uint8_t intTempYr = 0;
-
-	intTempDay = (str[0] - '0') * 10;
-	intTempDay = intTempDay + (str[1] - '0');
-
-	intTempMon = (str[2] - '0') * 10;
-	intTempMon = intTempMon + (str[3] - '0');
-
-	intTempYr = (str[4] - '0') * 10;
-	intTempYr = intTempYr + (str[5] - '0');
-
-	timeunknown = 0;
-	restored = 0;
-
-	date_d = intTempDay;
-	date_m = intTempMon;
-	date_y = intTempYr;
-
-}
-
 //Checks the alarm against the passed time.
 void check_alarm(uint8_t h, uint8_t m, uint8_t s) {
 
@@ -2178,6 +2036,12 @@ void fix_time(void) {
 		eeprom_write_byte((uint8_t *)EE_MONTH, date_m);
 		eeprom_write_byte((uint8_t *)EE_YEAR, date_y);
 	}
-
-
 }
+
+// Send 1 byte via SPI
+void spi_xfer(uint8_t c) {
+	SPDR = c;
+	while (! (SPSR & _BV(SPIF)))
+		;
+}
+

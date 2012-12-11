@@ -91,17 +91,22 @@ THE SOFTWARE.
 #define EE_SNOOZE 12
 #define EE_ZONE_HOUR 13
 #define EE_ZONE_MIN 14
+#define EE_DST 15
+#define EE_AUTOB 16
 
 void delay(uint16_t delay);
 
 void (*app_start)(void) = 0x0000;
 
 void clock_init(void);
+void alarm_init(void);
+void rtc_init(void);
 void initbuttons(void);
 void boost_init(uint8_t pwm);
 void vfd_init(void);
 void set_vfd_brightness(uint8_t brightness);
 void speaker_init(void);
+void display_timezone(int8_t h, uint8_t m);
 
 #ifdef FEATURE_AUTODIM
 void dimmer_init(void);
@@ -114,6 +119,12 @@ void display_str(char *s);
 void display_alarm(uint8_t h, uint8_t m);
 void display_brightness(int brightness);
 
+uint8_t b2bcd (uint8_t b);
+uint8_t bcd2b (uint8_t bcd);
+uint8_t dow (uint8_t y, uint8_t m, uint8_t d);
+uint8_t leapyear(uint16_t y);
+uint8_t monthlen(uint8_t y, uint8_t m);
+uint8_t dst (uint8_t y, uint8_t m, uint8_t d, uint8_t h);
 void set_time(void);
 void set_alarm(void);
 void set_date(void);
