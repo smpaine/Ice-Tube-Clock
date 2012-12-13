@@ -1,7 +1,6 @@
 /***************************************************************************
- Ice Tube Clock with GPS firmware July 22, 2010
- (c) 2010 Limor Fried / Adafruit Industries
- GPS Capability added by Devlin Thyne
+ Ice Tube Clock firmware August 13, 2009
+ (c) 2009 Limor Fried / Adafruit Industries
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
@@ -23,16 +22,15 @@ THE SOFTWARE.
 ****************************************************************************/
 
 #if (F_CPU == 16000000)
-#define BRRL_4800 207    // for 16MHZ
 #define BRRL_9600 103    // for 16MHZ
 #define BRRL_192 52    // for 16MHZ
 #elif (F_CPU == 8000000)
-#define BRRL_4800 103
 #define BRRL_9600 52
 #define BRRL_192 26    
 #endif
 
-#define NOP asm("nop");
+#define nop asm volatile ("nop\n\t")
+
 #define uart_putc(c) uart_putchar(c)
 
 void delay_ms(unsigned char ms);
@@ -40,9 +38,6 @@ void delay_10us(uint8_t us);
 void delay_s(uint8_t s);
 
 int uart_putchar(char c);
-
-char uart_getchar(void);
-
 void uart_init(uint16_t BRR);
 
 
@@ -53,10 +48,10 @@ void uart_putdw_hex(uint32_t dw);
 void uart_putw_dec(uint16_t w);
 void uart_putdw_dec(uint32_t dw);
 void uart_puts(const char* str);
+void uart_puts_P(PGM_P str);
 
 void RAM_putstring(char *str);
 void ROM_putstring(const char *str, uint8_t nl);
 
 #define putstring(x) ROM_putstring(PSTR(x), 0)
 #define putstring_nl(x) ROM_putstring(PSTR(x), 1)
-#define nop asm volatile ("nop")

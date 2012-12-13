@@ -25,6 +25,7 @@ THE SOFTWARE.
 #include <avr/interrupt.h>
 #include <util/delay.h>
 #include <avr/pgmspace.h>
+#include "iv.h"
 #include "util.h"
 
 void delay_10us(uint8_t ns)
@@ -45,6 +46,7 @@ void delay_s(uint8_t s) {
   }
 }
 
+#if DEBUG
 void uart_init(uint16_t BRR) {
   /* setup the main UART */
   UBRR0 = BRR;               // set baudrate counter
@@ -89,6 +91,16 @@ void uart_puts(const char* str)
         uart_putc(*str++);
 }
 
+void uart_puts_P(PGM_P str)
+{
+	char c;
+	
+	while (1) {
+		c = pgm_read_byte (str++);
+		if (c == 0) break;
+		uart_putc (c);
+	}	
+}
 
 void uart_putc_hex(uint8_t b)
 {
@@ -154,3 +166,4 @@ void uart_putdw_dec(uint32_t dw)
         num /= 10;
     }
 }
+#endif

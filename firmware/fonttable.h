@@ -1,4 +1,4 @@
-const uint8_t alphatable[] PROGMEM = {
+const char alphatable[] PROGMEM = {
 	0xFA, /* a */
 	0x3E, /* b */
 	0x1A, /* c */
@@ -29,7 +29,7 @@ const uint8_t alphatable[] PROGMEM = {
 };
 PGM_P alphatable_p PROGMEM = alphatable;
 
-const uint8_t numbertable[] PROGMEM = { 
+const char numbertable[] PROGMEM = { 
   0xFC /* 0 */, 
   0x60 /* 1 */,
   0xDA /* 2 */,
@@ -39,13 +39,6 @@ const uint8_t numbertable[] PROGMEM = {
   0xBE, /* 6 */
   0xE0, /* 7 */
   0xFE, /* 8 */
-#ifdef FEATURE_9
-  // Normal 7-segment "9" digit looks the same as letter "g".
-  // "This notation is ambiguous but the meaning will be clear in context." - Hungerford, "Algebra"
-  0xF6, /* 9 */
-#else
-  // ladyada's version of "9" is non-standard but distinct from letter "g".
   0xE6, /* 9 */
-#endif
 };
 PGM_P numbertable_p PROGMEM = numbertable;

@@ -1,12 +1,6 @@
 /***************************************************************************
  Ice Tube Clock firmware August 13, 2009
  (c) 2009 Limor Fried / Adafruit Industries
- Modifications by Len Popp
- Original auto-dimmer mod by Dave Parker
- Button interrupt fix by caitsith2
- Ice Tube Clock with GPS firmware July 22, 2010
- (c) 2010 Limor Fried / Adafruit Industries
- GPS Capability added by Devlin Thyne
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
@@ -27,19 +21,15 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 THE SOFTWARE.
 ****************************************************************************/
 
-// Optional Features - #define these or not as desired.
-// Auto-dimmer - requires a photocell hooked up to the hax0r port
-#define FEATURE_AUTODIM
-// Display digit "9" in the usual way (instead of the default with no bottom segment)
-#define FEATURE_9
 
 #define halt(x)  while (1)
 
 #define DEBUG 1
-#define DEBUGP(x)  if (DEBUG) {putstring_nl(x);}
-
-//The year the clock was programmed, used for error checking
-#define PROGRAMMING_YEAR 10
+#if DEBUG
+#define DEBUGP(x) {putstring_nl(x);}
+#else
+#define DEBUGP(x) {}
+#endif
 
 #define REGION_US 0
 #define REGION_EU 1
@@ -48,13 +38,10 @@ THE SOFTWARE.
 #define DATE 0  // mm-dd-yy
 #define DAY 1   // thur jan 1
 
-// String buffer size:
-#define BUFFERSIZE 128
-
 #define DISPLAYSIZE 9
 
 #define MAXSNOOZE 600 // 10 minutes
-#define INACTIVITYTIMEOUT 10 // how many seconds we will wait before turning off menus
+#define INACTIVITYTIMEOUT 60 // how many seconds we will wait before turning off menus
 
 #define BRIGHTNESS_MAX 90
 #define BRIGHTNESS_MIN 30
@@ -64,11 +51,12 @@ THE SOFTWARE.
 // >= PHOTOCELL_DARK defaults to BRIGHTNESS_MIN
 // <= PHOTOCELL_LIGHT defaults to BRIGHTNESS_MAX
 // In between does a variable auto-adjust of the brightness
-// My photocell ranges from 225-941+
+// My photocell ranges from 0-315;
 // Set DARK > 941 so that it will be bright enough during the day
 // Set Light > 225 so that it will be bright enough during the day
-#define PHOTOCELL_DARK 1023
-#define PHOTOCELL_LIGHT 600
+#define PHOTOCELL_DARK 315
+#define PHOTOCELL_LIGHT 0
+
 #define PHOTOCELL_MIN 45
 #define PHOTOCELL_MAX 90
 
@@ -89,94 +77,77 @@ THE SOFTWARE.
 #define EE_VOLUME 10
 #define EE_REGION 11
 #define EE_SNOOZE 12
-#define EE_ZONE_HOUR 13
-#define EE_ZONE_MIN 14
-#define EE_DST 15
-#define EE_AUTOB 16
+#define EE_DST 13
+#define EE_AUTOB 14
 
 void delay(uint16_t delay);
 
-void (*app_start)(void) = 0x0000;
+//void (*app_start)(void) = 0x0000;
 
-void clock_init(void);
-void alarm_init(void);
-void rtc_init(void);
-void initbuttons(void);
-void boost_init(uint8_t pwm);
-void vfd_init(void);
-void set_vfd_brightness(uint8_t brightness);
-void speaker_init(void);
-void display_timezone(int8_t h, uint8_t m);
-
-#ifdef FEATURE_AUTODIM
-void dimmer_init(void);
-void dimmer_update(void);
-#endif
+void init_clock(void);
+void init_buttons(void);
+void init_boost(void);
+void init_autobright(void);
+void init_vfd(void);
+void init_speaker(void);
+void init_rtc(void);
+void init_alarm(void);
 
 void display_time(uint8_t h, uint8_t m, uint8_t s);
-void display_date(uint8_t style);
+void display_date(uint8_t y, uint8_t m, uint8_t d);
+void display_sdate(void);
+void display_day(void);
+void display_temp(void);
+void display_clear(void);
 void display_str(char *s);
+void display_Pstr(PGM_P s);
+void display_char(char c, uint8_t pos);
 void display_alarm(uint8_t h, uint8_t m);
-void display_brightness(int brightness);
 
-uint8_t b2bcd (uint8_t b);
-uint8_t bcd2b (uint8_t bcd);
-uint8_t dow (uint8_t y, uint8_t m, uint8_t d);
-uint8_t leapyear(uint16_t y);
-uint8_t monthlen(uint8_t y, uint8_t m);
-uint8_t dst (uint8_t y, uint8_t m, uint8_t d, uint8_t h);
 void set_time(void);
 void set_alarm(void);
 void set_date(void);
 void set_brightness(void);
 void set_volume(void);
 void set_region(void);
+void set_trim(void);
+void set_dst(void);
 void set_snooze(void); // not activated by default
 
-//Checks the alarm against the passed time.
-void check_alarm(uint8_t h, uint8_t m, uint8_t s);
-
-//Fixes the time variables whenever time is changed
-void fix_time(void);
-
-//Set the time zone:
-void set_timezone(void);
-
-void beep(uint16_t freq, uint8_t times);
+void beep(uint16_t freq, uint16_t cycles, uint8_t loud);
 void tick(void);
 
 uint8_t leapyear(uint16_t y);
-void setalarmstate(void);
+uint8_t monthlen(uint8_t y, uint8_t m);
+uint8_t dow (uint8_t y, uint8_t m, uint8_t d);
+uint8_t dst (uint8_t y, uint8_t m, uint8_t d, uint8_t h);
+
+void setalarmstate(uint8_t on);
 
 void setdisplay(uint8_t digit, uint8_t segments);
 void vfd_send(uint32_t d);
 void spi_xfer(uint8_t c);
 
-//GPS serial data handling functions:
-uint8_t gpsdataready(void);
-void getgpstime(void);
-void setgpstime(char* str);
-void setgpsdate(char* str);
-
 
 // displaymode
-#define NONE 99
-#define SHOW_TIME 0
-#define SHOW_DATE 1
-#define SHOW_ALARM 2
-#define SET_TIME 3
-#define SET_ALARM 4
-#define SET_DATE 5
-#define SET_BRIGHTNESS 6
-#define SET_VOLUME 7
-#define SET_REGION 8
-#define SHOW_SNOOZE 9
-#define SET_SNOOZE 10
-#define SET_ZONE 11
+#define NONE			99
+#define SHOW_TIME		0
+#define SHOW_DATE		1
+#define SHOW_ALARM		2
+#define SET_TIME		3
+#define SET_ALARM		4
+#define SET_DATE		5
+#define SET_BRIGHTNESS	6
+#define SET_VOLUME		7
+#define SET_REGION		8
+#define SHOW_SNOOZE		9
+#define SET_SNOOZE		10
+#define SET_TRIM		11
+#define SET_DST			12
 
 // sub-mode settings
 #define SHOW_MENU 0
-// alarm/time/zone
+// alarm/time
 #define SET_HOUR 1
 #define SET_MIN 2
 #define SET_SEC 3
@@ -190,7 +161,6 @@ void setgpsdate(char* str);
 #define SET_VOL 1
 //region
 #define SET_REG 1
-
 
 #define BOOST PD6
 #define BOOST_DDR DDRD
@@ -226,12 +196,6 @@ void setgpsdate(char* str);
 #define SPK_PORT PORTB
 #define SPK_DDR DDRB
 
-#define DIMMER_POWER_PORT PORTC
-#define DIMMER_POWER_DDR DDRC
-#define DIMMER_POWER_PIN PC5
-#define DIMMER_SENSE_PIN MUX2
-#define DIMMER_SENSE_PIND ADC4D
-
 #define SEG_A 19
 #define SEG_B 17
 #define SEG_C 14
@@ -251,4 +215,3 @@ void setgpsdate(char* str);
 #define DIG_8 7
 #define DIG_9 3
 
-#define nop asm("nop")
