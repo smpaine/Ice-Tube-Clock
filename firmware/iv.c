@@ -591,7 +591,7 @@ int main(void) {
 	init_rtc();
 	init_clock();
 
-	init_autobright();
+	//init_autobright();
 
 	sei();
 
@@ -1052,9 +1052,9 @@ void set_brightness(void)
 			set_flag(f_show_time);		 
 			eeprom_write_byte((uint8_t *)EE_BRIGHT, brightness);
 			eeprom_write_byte((uint8_t *)EE_AUTOB, flag(f_autobright));
-			if (flag(f_autobright))
-				init_autobright();
-			else
+			//if (flag(f_autobright))
+				//init_autobright();
+			//else
 				ADCSRA &= ~(_BV(ADEN) | _BV(ADIE));
 			break;
 		}
@@ -1077,9 +1077,9 @@ void set_brightness(void)
 				set_flag(f_show_time);
 				eeprom_write_byte((uint8_t *)EE_BRIGHT, brightness);
 				eeprom_write_byte((uint8_t *)EE_AUTOB, flag (f_autobright));
-				if (flag(f_autobright))
-					init_autobright();
-				else
+				//if (flag(f_autobright))
+					//init_autobright();
+				//else
 					ADCSRA &= ~(_BV(ADEN) | _BV(ADIE));
 				break;
 			}
@@ -1447,6 +1447,7 @@ void init_boost (void)
 	TIMSK0 |= _BV(TOIE0); // turn on the interrupt for muxing
 }
 
+/*
 void init_autobright (void) {
 	if (eeprom_read_byte ((uint8_t *)EE_AUTOB))
 		set_flag (f_autobright);
@@ -1468,6 +1469,7 @@ void init_autobright (void) {
 	ADCSRA = _BV(ADEN) | _BV(ADATE) | _BV(ADIE) | 0x7;
 	ADCSRA |= _BV(ADSC);
 }
+*/
 
 /**************************** TIME CALCULATIONS *****************************/
 

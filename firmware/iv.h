@@ -87,7 +87,7 @@ void delay(uint16_t delay);
 void init_clock(void);
 void init_buttons(void);
 void init_boost(void);
-void init_autobright(void);
+//void init_autobright(void);
 void init_vfd(void);
 void init_speaker(void);
 void init_rtc(void);
