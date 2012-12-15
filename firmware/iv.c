@@ -268,8 +268,10 @@ void setsnooze(void)
 // Photo-resistor is wired in place of R2, and divider is wired to ADC2.
 // Lower ADC values mean more light, higher ADC values mean less.
 
+/*
 volatile long adc_sum;			// Sum of ADC values to produce average
 volatile uint16_t adc_count;		// Count of # of ADC readings in adc_sum
+
 
 ISR(ADC_vect, ISR_NOBLOCK) {
 	/*
@@ -305,7 +307,7 @@ ISR(ADC_vect, ISR_NOBLOCK) {
 		adc_count = 0;
 	}
 	*/
-
+	/*
 	uint8_t low, high;
 	unsigned int val;
 
@@ -333,7 +335,7 @@ ISR(ADC_vect, ISR_NOBLOCK) {
 		if (val < ocr0a) ocr0a--;
 	}
 }
-
+*/
 
 /************************* BUTTON INTERRUPTS ************************/
 
