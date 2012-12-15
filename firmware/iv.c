@@ -1325,7 +1325,7 @@ void init_clock(void) {
 void init_rtc (void) {
 	// 32.768 / 128 = 256 which is exactly an 8-bit timer overflow
 	ASSR |= _BV(EXCLK);		// External clock (comment out if using xtal)
-	ASSR |= _BV(AS2); // use crystal
+	ASSR |= _BV(AS2);		// use crystal
 	TCCR2A = 0;
 	TCCR2B = _BV(CS22) | _BV(CS20); // div by 128
 	// We will overflow once a second, and call an interrupt
@@ -1458,19 +1458,14 @@ void init_autobright (void) {
 	if (flag(f_autobright)) {
 		ocr0a = 90;		// Start at maximum
 		OCR0A = ocr0a;
-	}	
+	}
 
+	ADMUX = _BV(REFS0) | 0x2;       // AVcc ref, mux to ADC2
+	DIDR0 = _BV(ADC2D);                     // Disable ADC2 digital input
 	
-	ADMUX |= _BV(REFS0);	// Set ADC reference to AVCC
-	ADMUX |= _BV(ADC2D);			// Set ADC input as ADC2
-	DIDR0 = _BV(ADC2D);		// Disable ADC2 digital input
-	
-	//ADCSRB = 0;
+	ADCSRB = 0;
 	// enable ADC and interrupts, divide clock by 128, start conversion
-	//ADCSRA |= _BV(ADEN) | _BV(ADATE) | _BV(ADIE) | 0x7;
-	ADCSRA |= _BV(ADPS2)| _BV(ADPS1); // Set ADC prescalar to 64 - 125KHz sample rate @ 8MHz F_CPU
-	ADCSRA |= _BV(ADEN);  // Enable ADC
-	ADCSRA |= _BV(ADIE);  // Enable ADC interrupt
+	ADCSRA = _BV(ADEN) | _BV(ADATE) | _BV(ADIE) | 0x7;
 	ADCSRA |= _BV(ADSC);
 }
 
