@@ -108,7 +108,7 @@ To Do:
 #include "iv.h"
 #include "util.h"
 #include "fonttable.h"
-#include "twi.c"
+#include "twi.h"
 
 const char verstr[] PROGMEM = "ver 2.14";
 
@@ -127,7 +127,7 @@ volatile uint8_t alarming;		// Alarm is sounding, plus counters to pattern sound
 
 volatile uint8_t ocr0a;
 
-PROGMEM void (*menu_list[])(void) = {
+void (*menu_list[])(void) = {
 	&set_alarm,
 	&set_time,
 	&set_date,
@@ -179,7 +179,7 @@ volatile uint8_t brightness_level;
 const char digittable[] PROGMEM = {
 	DIG_9, DIG_8, DIG_7, DIG_6, DIG_5, DIG_4, DIG_3, DIG_2, DIG_1
 };
-PGM_P digittable_p PROGMEM = digittable;
+PGM_P const digittable_p PROGMEM = digittable;
 
 // This table allow us to index between what segment we want to light up
 // and what the pin number is on the MAX6921 see the .h for values.
@@ -187,7 +187,7 @@ PGM_P digittable_p PROGMEM = digittable;
 const char segmenttable[] PROGMEM = {
 	SEG_H, SEG_G,	SEG_F,	SEG_E,	SEG_D,	SEG_C,	SEG_B,	SEG_A 
 };
-PGM_P segmenttable_p PROGMEM = segmenttable;
+PGM_P const segmenttable_p PROGMEM = segmenttable;
 
 // muxdiv divides a high speed interrupt (31.25KHz)
 // down so that we can refresh the entire display at about 100Hz.
@@ -197,7 +197,7 @@ PGM_P segmenttable_p PROGMEM = segmenttable;
 
 uint8_t muxdiv;
 const char mux_divider[DISPLAYSIZE] PROGMEM = {90, 30, 30, 40, 30, 30, 60, 30, 55};
-PGM_P mux_divider_p PROGMEM = mux_divider;
+PGM_P const mux_divider_p PROGMEM = mux_divider;
 
 // mildiv and MIL_DIVIDER divides 31.25kHz down to 1ms
 uint8_t mildiv;
@@ -552,9 +552,11 @@ int main(void) {
 	WDTCSR = _BV(WDE);
 	wdt_enable(WDTO_2S);
 	kickthedog();
+/*
 #if DEBUG
 	uart_init(BRRL_192);
 #endif
+*/
 
 	// init io's
 	init_buttons();
@@ -1020,7 +1022,7 @@ uint8_t limit_brightness (uint8_t brightness)
 	return brightness;
 }
 
-char brit_fmt1[] PROGMEM = "brit %-2d ";
+const char brit_fmt1[] PROGMEM = "brit %-2d ";
 const char brit_fmt2[] PROGMEM = "brit aut";
 
 void set_brightness(void) 
@@ -1201,7 +1203,7 @@ void set_dst(void) {
 }
 
 
-char trim_fmt[] PROGMEM = "trim %-3d";
+const char trim_fmt[] PROGMEM = "trim %-3d";
 
 void set_trim(void) {
 	uint8_t mode = SHOW_MENU;
@@ -1466,7 +1468,7 @@ void init_autobright (void) {
 
 /**************************** TIME CALCULATIONS *****************************/
 
-char dow_tbl[] PROGMEM = {0, 3, 2, 5, 0, 3, 5, 1, 4, 6, 2, 4};
+const char dow_tbl[] PROGMEM = {0, 3, 2, 5, 0, 3, 5, 1, 4, 6, 2, 4};
 
 // Calculate day of the week by Sakamoto's method, 0=Sunday
 uint8_t dow (uint8_t y, uint8_t m, uint8_t d) {
@@ -1483,7 +1485,7 @@ uint8_t leapyear(uint16_t y)  {
 }
 
 const char mon_tbl[] PROGMEM = {31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31};
-PGM_P mon_tbl_p PROGMEM = mon_tbl;
+PGM_P const mon_tbl_p PROGMEM = mon_tbl;
 
 uint8_t monthlen(uint8_t y, uint8_t m) {
 	uint8_t ml;
@@ -1546,7 +1548,7 @@ const char wed[] PROGMEM = "wednsday";
 const char thu[] PROGMEM = "thursday";
 const char fri[] PROGMEM = " friday";
 const char sat[] PROGMEM = "saturday";
-PGM_P dayname[7] PROGMEM = {sun, mon, tue, wed, thu, fri, sat};
+PGM_P const dayname[7] PROGMEM = {sun, mon, tue, wed, thu, fri, sat};
 	
 void display_day(void)
 {
@@ -1564,7 +1566,7 @@ void display_day(void)
 
 // We can display the current date!
 
-char date_fmt1[] PROGMEM = "%02d/%02d/%02d";
+const char date_fmt1[] PROGMEM = "%02d/%02d/%02d";
 
 // This type is mm-dd-yy OR dd-mm-yy depending on our region
 void display_date(uint8_t yy, uint8_t mm, uint8_t dd) 
@@ -1592,9 +1594,9 @@ const char sep[] PROGMEM = " sept";
 const char oct[] PROGMEM = "octob";
 const char nov[] PROGMEM = "novem";
 const char dec[] PROGMEM = "decem";
-PGM_P monname[12] PROGMEM = {jan, feb, mar, apr, may, jun, jul, aug, sep, oct, nov, dec};
+PGM_P const monname[12] PROGMEM = {jan, feb, mar, apr, may, jun, jul, aug, sep, oct, nov, dec};
 
-char date_fmt2[] PROGMEM = "%S %-d";
+const char date_fmt2[] PROGMEM = "%S %-d";
 
 // This is more "Sunday June 21" style
 void display_sdate(void)
@@ -1742,8 +1744,8 @@ void display_time(uint8_t h, uint8_t m, uint8_t s) {
 	}
 }
 
-char alarm_fmt1[] PROGMEM = "%2d:%02d %cm";
-char alarm_fmt2[] PROGMEM = "%02d:%02d";
+const char alarm_fmt1[] PROGMEM = "%2d:%02d %cm";
+const char alarm_fmt2[] PROGMEM = "%02d:%02d";
 
 // Kinda like display_time but just hours and minutes
 void display_alarm(uint8_t h, uint8_t m)
@@ -1762,7 +1764,7 @@ void display_alarm(uint8_t h, uint8_t m)
 	display_str (d);
 }
 
-char temp_fmt[] PROGMEM = " %3d.%d%c";
+const char temp_fmt[] PROGMEM = " %3d.%d%c";
 
 void display_temp(void) 
 {

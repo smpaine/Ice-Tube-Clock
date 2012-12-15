@@ -52,7 +52,7 @@ THE SOFTWARE.
 /*
 ** Generate error message that shows expected and received status
 */
-char twi_fmt[] PROGMEM = "twi %02x:%02x\r\n";
+const char twi_fmt[] PROGMEM = "twi %02x:%02x\r\n";
 
 void twiError (uint8_t expected, uint8_t received)
 {

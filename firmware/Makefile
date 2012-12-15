@@ -1,6 +1,6 @@
 # MCU name
-MCU = atmega168
-#MCU = atmega328
+#MCU = atmega168
+MCU = atmega328
 F_CPU = 8000000
 
 # Output format. (can be srec, ihex, binary)
