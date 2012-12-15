@@ -319,8 +319,13 @@ ISR(ADC_vect, ISR_NOBLOCK) {
 	} else if (val <= PHOTOCELL_LIGHT) {
 		val = PHOTOCELL_MAX;
 	} else {
-		val = PHOTOCELL_MAX - (((unsigned long)(PHOTOCELL_MAX - PHOTOCELL_MIN)) *
-				(val - PHOTOCELL_LIGHT)) / (PHOTOCELL_DARK - PHOTOCELL_LIGHT);
+		// Dark = 315, Light = 0
+		// Max = 90, Min = 30
+		// example: photocell value is 5
+		// (Dark (315) - (5) / (dark (315) - light (0)) ) * (max (90) - min (30) ) =
+		// 59
+		// 59 + Min (30) = 89.04
+		val = PHOTOCELL_MIN + ( (PHOTOCELL_DARK - val) / (PHOTOCELL_DARK - PHOTOCELL_LIGHT) ) * (PHOTOCELL_MAX - PHOTOCELL_MIN);
 	}
 
 	if (flag(f_autobright)) {
