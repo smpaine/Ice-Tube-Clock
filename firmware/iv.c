@@ -1326,7 +1326,7 @@ void init_clock(void) {
 // Turn on the RTC by selecting the external 32khz crystal
 void init_rtc (void) {
 	// 32.768 / 128 = 256 which is exactly an 8-bit timer overflow
-	ASSR |= _BV(EXCLK);		// External clock (comment out if using xtal)
+	//ASSR |= _BV(EXCLK);		// External clock (comment out if using xtal)
 	ASSR |= _BV(AS2);		// use crystal
 	TCCR2A = 0;
 	TCCR2B = _BV(CS22) | _BV(CS20); // div by 128
