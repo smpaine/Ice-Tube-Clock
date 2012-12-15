@@ -1460,14 +1460,17 @@ void init_autobright (void) {
 		OCR0A = ocr0a;
 	}	
 
-	//ADCSRA |= _BV(ADPS2)| _BV(ADPS1); // Set ADC prescalar to 64 - 125KHz sample rate @ 8MHz F_CPU
+	
 	ADMUX |= _BV(REFS0);	// Set ADC reference to AVCC
-	ADMUX |= 0x2;			// Set ADC input as ADC2
+	ADMUX |= _BV(ADC2D);			// Set ADC input as ADC2
 	DIDR0 = _BV(ADC2D);		// Disable ADC2 digital input
 	
-	ADCSRB = 0;
+	//ADCSRB = 0;
 	// enable ADC and interrupts, divide clock by 128, start conversion
-	ADCSRA |= _BV(ADEN) | _BV(ADATE) | _BV(ADIE) | 0x7;
+	//ADCSRA |= _BV(ADEN) | _BV(ADATE) | _BV(ADIE) | 0x7;
+	ADCSRA |= _BV(ADPS2)| _BV(ADPS1); // Set ADC prescalar to 64 - 125KHz sample rate @ 8MHz F_CPU
+	ADCSRA |= _BV(ADEN);  // Enable ADC
+	ADCSRA |= _BV(ADIE);  // Enable ADC interrupt
 	ADCSRA |= _BV(ADSC);
 }
 
